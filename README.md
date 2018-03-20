@@ -1,3 +1,9 @@
+
+<p align="center"> 
+<img src="https://github.com/gift-surg/MRImultiAtlasForNeonatalRabbitBrain/blob/master/docs/annotated_slice.jpg" width="450">
+</p>
+
+
 # MRImultiAtlasForNeonatalRabbitBrain (MRIrb)
 
 Code for the benchmarking and validation of the Neonatal Rabbit brain Multi-Atlas 
