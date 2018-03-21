@@ -199,9 +199,9 @@ def run_probabilistic_atlas_generator(commands, options):
         # --- parameters:
 
         # number of affine loop to perform [for the paper 7]
-        AFF_IT_NUM = 2
+        AFF_IT_NUM = 7
         # number of non-rigid loop to perform [for the paper 7]
-        NRR_IT_NUM = 1
+        NRR_IT_NUM = 7
 
         if options['Bimodal']:
             results_folder = 'results_bimodal'
@@ -273,11 +273,9 @@ def run_probabilistic_atlas_generator(commands, options):
     if commands['Create_probability_for_each_level']:
 
         if options['Bimodal']:
-            results_folder = 'results_bimodal'
             subjects_folder = 'subjects_bimodal'
             mod_suffix = 'bimodal'
         else:
-            results_folder = 'results'
             subjects_folder = 'subjects'
             mod_suffix = 'T1'
 

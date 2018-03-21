@@ -30,10 +30,10 @@ export AFFINE_args=" -omp 8 -speeeeed "
 export NRR_args=" -ln 4 -lp 2 -be 0.8  -omp 8 "
 
 # number of affine loop to perform
-export AFF_IT_NUM=2
+export AFF_IT_NUM=7
 
 # number of non-rigid loop to perform
-export NRR_IT_NUM=1
+export NRR_IT_NUM=7
 
 # grid engine arguments
 export QSUB_CMD="qsub -l h_rt=05:00:00 -l tmem=3.5G -l h_vmem=3.5G -l vf=3.5G -l s_stack=10240  -j y -S /bin/csh -b y -cwd -V -e /cluster/project0/fetalsurgery/Data/MRI/KUL_preterm_rabbit_model/software/z_output -o /cluster/project0/fetalsurgery/Data/MRI/KUL_preterm_rabbit_model/software/z_output"

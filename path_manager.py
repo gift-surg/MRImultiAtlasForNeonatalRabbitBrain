@@ -10,7 +10,7 @@ import os
 from os.path import join as jph
 
 
-# Change the root folder according to the location
+# Change the root folder according to the location of the downloaded data.
 if os.path.exists('/cluster/project0'):
     pfo_root = '/cluster/project0/fetalsurgery/Data/MRI/KUL_preterm_rabbit_model/data/'
     bfc_corrector_cmd = '/share/apps/cmic/NiftyMIDAS/bin/niftkMTPDbc'
@@ -45,5 +45,5 @@ pfo_root_probabilistic_atlas = jph(pfo_root, 'A_probabilistic_atlas')
 # folder with material for images
 pfo_root_for_images = jph(pfo_root, 'Z_results_for_images')
 
-# extra temporary folder for created temporary output
+# extra temporary folder for temporary output generated during image processing
 pfo_tmp = jph(pfo_root, 'Z_tmp')

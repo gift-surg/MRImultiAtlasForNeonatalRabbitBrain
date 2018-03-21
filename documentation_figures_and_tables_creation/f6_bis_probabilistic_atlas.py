@@ -1,17 +1,6 @@
 """
-CREATE CONTOUR SEGMENTATIONS:
-Each single atlas is aligned in the average space.
-> We have the multi atlas and the labels descriptor.
-> We have the folder with the segmentations aligned (created with atlas_manager/create_probabilistic_atlas.py)
-> We have the T1 in the average space (again created with atlas_manager/create_probabilistic_atlas.py)
-
-< We want to build a big figure with the 12 subjects of the multi atlas in coronal sections + a selection of
-regions to be overlayed to the T1.
-
-< We want the probabilistic atlas with the overlayed regions in coloured grayscale, overlayed.
-
--------
-This module is paired with create probabilistic atlas, and should be executed afterwards.
+Overlay the probabilistic segmentation to each of the subjects of the multi-atlas.
+This code uses the data created in probabilistic_multi_atlas_creator.py.
 """
 
 import os
@@ -31,23 +20,31 @@ from LABelsToolkit.tools.aux_methods.utils_nib import replace_translational_part
 
 from LABelsToolkit.tools.descriptions.manipulate_descriptors import LabelsDescriptorManager as LDM
 
+import path_manager
+
 
 if __name__ == "__main__":
 
     # Path manager:
 
-    pfo_atlas = '/Users/sebastiano/Dropbox/RabbitEOP-MRI/study/A_atlas'
-    atlas_subjects = ['1201', '1203', '1305', '1404', '1507', '1510', '1702', '1805', '2002', '2502', '3301', '3404']
+    pfo_atlas = path_manager.pfo_multi_atlas
+    atlas_subjects = path_manager.atlas_subjects
 
-    pfo_probabilistic_template = '/Volumes/LC/sebastianof/rabbits/A_probabilistic_template'
-    pfo_probabilistic_template_results = jph(pfo_probabilistic_template, 'a_prob_atlas_results')
+    pfo_probabilistic_template = path_manager.pfo_root_probabilistic_atlas
+    pfo_probabilistic_template_results = jph(pfo_probabilistic_template, 'a_results')
 
-    pfo_tmp = '/Users/sebastiano/Desktop/test_im'
+    pfi_labels_descritpor = path_manager.pfi_labels_descriptor
 
-    pfi_labels_descritpor = jph(pfo_atlas, 'labels_descriptor.txt')
+    assert os.path.exists(pfo_atlas)
+    assert os.path.exists(atlas_subjects)
+    assert os.path.exists(pfo_probabilistic_template)
+    assert os.path.exists(pfo_probabilistic_template_results), 'Run probabilistic_multi_atlas_creator.py first'
     assert os.path.exists(pfi_labels_descritpor)
 
-    pfi_where_to_save_final_figure = '/Users/sebastiano/Dropbox/RabbitEOP-MRI/docs/Atlas_Paper/images/f6_grid_probabilistic/f6_prob_final_v1.pdf'
+    pfo_tmp = path_manager.pfo_tmp
+    os.system('mkdir -p {}'.format(pfo_tmp))
+
+    # pfi_where_to_save_final_figure = '/Users/sebastiano/Dropbox/RabbitEOP-MRI/docs/Atlas_Paper/images/f6_grid_probabilistic/f6_prob_final_v1.pdf'
 
     # Controller:
     labels_to_keep = [11, 12, 31, 32, 69, 70, 233]
@@ -61,18 +58,19 @@ if __name__ == "__main__":
         ldm = LDM(pfi_labels_descritpor)
 
         for sj_id in atlas_subjects:
-            # input:
-            pfi_segmentation = jph('/Volumes/LC/sebastianof/rabbits/A_probabilistic_template/all_segm',
-                                   '{}_approved.nii.gz'.format(sj_id))
 
+            # Input:
+            pfi_segmentation = jph(pfo_probabilistic_template, 'all_segm', '{}_segm.nii.gz'.format(sj_id))
+            assert os.path.exists(pfi_segmentation), pfi_segmentation
+            # Output
             pfi_my_labels_segmentation = jph(pfo_tmp, '{}_my_labels.nii.gz'.format(sj_id))
             pfi_rgb_segmentation = jph(pfo_tmp, '{}_rgb.nii.gz'.format(sj_id))
 
-            assert os.path.exists(pfi_segmentation)
+            # remove all other labels:
             lm.manipulate_labels.assign_all_other_labels_the_same_value(pfi_segmentation, pfi_my_labels_segmentation,
                                                                         labels_to_keep=labels_to_keep,
                                                                         same_value_label=0)
-
+            # Save the selected labels
             im_rgb = nib.load(pfi_my_labels_segmentation)
             im_rgb = ldm.get_corresponding_rgb_image(im_rgb, invert_black_white=True)
             nib.save(im_rgb, pfi_rgb_segmentation)
@@ -114,7 +112,7 @@ if __name__ == "__main__":
             print sj_id
 
             # Get the background image (T1) - skull stripped from the A_probabilistic_template folder.
-            pfi_anatomy = jph(pfo_probabilistic_template, 'no_skull', 'subjects', '{}_T1.nii.gz'.format(sj_id))
+            pfi_anatomy = jph(pfo_probabilistic_template, 'subjects', '{}_T1.nii.gz'.format(sj_id))
             im_sj = nib.load(pfi_anatomy)
 
             data = im_sj.get_data()[:, axis_quote, :].T
@@ -238,7 +236,7 @@ if __name__ == "__main__":
 
         ax04.set_xlabel(r'mm')
 
-        if pfi_where_to_save_final_figure is not None:
-            plt.savefig(pfi_where_to_save_final_figure, format='pdf', dpi=200)
+        # if pfi_where_to_save_final_figure is not None:
+        #     plt.savefig(pfi_where_to_save_final_figure, format='pdf', dpi=200)
 
         plt.show()

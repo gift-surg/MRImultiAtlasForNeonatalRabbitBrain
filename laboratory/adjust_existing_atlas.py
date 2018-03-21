@@ -9,6 +9,9 @@ from LABelsToolkit.main import LABelsToolkit as LT
 from LABelsToolkit.tools.aux_methods.utils_nib import remove_nan, set_new_header_description, set_new_data
 from LABelsToolkit.tools.image_colors_manipulations.normaliser import normalise_below_labels
 
+
+import path_manager
+
 # from labels_manager.tools.manipulations.normaliser import divide_by_median_below_labels_path
 
 '''
@@ -102,31 +105,29 @@ def custom_cleaner(pfi_image):
 
 if __name__ == '__main__':
     # for each chart in the template:
-    pfo_template = ''
-    pfo_dump = ''  # set path here.
+    pfo_multi_atlas = path_manager.pfo_multi_atlas
 
-    assert os.path.exists(pfo_template)
-    assert os.path.exists(pfo_dump)
+    assert os.path.exists(pfo_multi_atlas)
 
     atlas_charts = []
 
     ''' set the origin in the center of mass of the segmentation of a chart of the atlas '''
     if False:
 
-        for p in os.listdir(pfo_template):
+        for p in os.listdir(pfo_multi_atlas):
             if p.isdigit():
                 pass
                 # Already used. Do not use twice on the same dataset!!
                 # atlas_charts += [p]
 
         for ch in atlas_charts:
-            pfo_mod = jph(pfo_template, ch, 'mod')
-            pfo_masks = jph(pfo_template, ch, 'masks')
-            pfo_segm = jph(pfo_template, ch, 'segm')
+            pfo_mod = jph(pfo_multi_atlas, ch, 'mod')
+            pfo_masks = jph(pfo_multi_atlas, ch, 'masks')
+            pfo_segm = jph(pfo_multi_atlas, ch, 'segm')
 
             # binarise the approved segmentation, or if not present, one of the automatic.
             pfi_segm = jph(pfo_segm, '{}_approved.nii.gz'.format(ch))
-            pfi_segm_bin = jph(pfo_dump, '{}_approved_bin.nii.gz'.format(ch))
+            pfi_segm_bin = jph(path_manager.pfo_tmp, '{}_approved_bin.nii.gz'.format(ch))
             cmd = 'seg_maths {0} -bin {1}'.format(pfi_segm, pfi_segm_bin)
             os.system(cmd)
 
@@ -165,9 +166,9 @@ if __name__ == '__main__':
     ''' set the origin in the center of mass of the segmentation of a chart of the atlas '''
     if False:
 
-        for fi in os.listdir(pfo_template):
+        for fi in os.listdir(pfo_multi_atlas):
             if fi.endswith('.nii.gz'):
-                pfi_im = jph(pfo_template, fi)
+                pfi_im = jph(pfo_multi_atlas, fi)
                 im = nib.load(pfi_im)
 
                 print ''
@@ -177,7 +178,7 @@ if __name__ == '__main__':
                 new_center = -1 * im.affine[:3, :3].dot(np.array([157, 230, 90]))
                 print 'new center:'
                 print new_center
-                pfi_im_new = jph(pfo_template, 'a_{}'.format(fi))
+                pfi_im_new = jph(pfo_multi_atlas, 'a_{}'.format(fi))
                 adjust_nifti_translation_path(pfi_im, new_center, pfi_im_new, verbose=0)
 
                 im_again = nib.load(pfi_im_new)
@@ -189,14 +190,13 @@ if __name__ == '__main__':
                                    '3301']
         modalities_names = ['T1', 'FA', 'MD', 'S0', 'V1']
         masks_names = ['roi_mask', 'reg_mask']
-        pfo_atlas = '/Users/sebastiano/Dropbox/RabbitEOP-MRI/study/A_atlas'
 
         ''' Merge labels as a test labels'''
         for sj in atlas_list_charts_names:
-            pfi_orignal = jph(pfo_atlas, sj, 'segm', '{}_approved.nii.gz'.format(sj))
-            pfi_merged = jph(pfo_atlas, sj, 'segm', 'test_PV_{}_approved.nii.gz'.format(sj))
+            pfi_orignal = jph(pfo_multi_atlas, sj, 'segm', '{}_approved.nii.gz'.format(sj))
+            pfi_merged = jph(pfo_multi_atlas, sj, 'segm', 'test_PV_{}_approved.nii.gz'.format(sj))
 
-            lt = LT(pfo_atlas)
+            lt = LT(pfo_multi_atlas)
             lt.manipulate_labels.relabel(pfi_orignal, pfi_merged, list_old_labels=(211, 212),
                                          list_new_labels=(201, 201))
 
@@ -211,7 +211,7 @@ if __name__ == '__main__':
         ''' Remove nan and set up a message'''
         for sj in atlas_list_charts_names:
             print 'Remove nan and set up descriptor, chart {}'.format(sj)
-            pfo_chart_sj = jph(pfo_atlas, sj)
+            pfo_chart_sj = jph(pfo_multi_atlas, sj)
             assert os.path.exists(pfo_chart_sj)
             # modalities:
             for mod in modalities_names:
@@ -229,14 +229,15 @@ if __name__ == '__main__':
             if os.path.exists(pfi_segm):
                 custom_cleaner(pfi_segm)
 
+    if True:
         ''' normalise values below T1 and S0 : use binarised segmentation with the. '''
-        for sj in atlas_list_charts_names:
+        for sj in ['2502']:
             print 'normalisation T1, S0, chart {}'.format(sj)
 
-            pfo_chart_sj = jph(pfo_atlas, sj)
+            pfo_chart_sj = jph(path_manager.pfo_multi_atlas, sj)
             pfi_T1 = jph(pfo_chart_sj, 'mod', '{0}_T1.nii.gz'.format(sj))
             pfi_S0 = jph(pfo_chart_sj, 'mod', '{0}_S0.nii.gz'.format(sj))
-            pfi_segm = jph(pfo_chart_sj, 'segm', '{0}_approved.nii.gz'.format(sj))
+            pfi_segm = jph(pfo_chart_sj, 'segm', '{0}_segm.nii.gz'.format(sj))
             if not os.path.exists(pfi_segm):
                 pfi_segm = jph(pfo_chart_sj, 'segm', 'automatic','{0}_T1_MV_s.nii.gz'.format(sj))
             pfi_roi = jph(pfo_chart_sj, 'masks', '{0}_roi_mask.nii.gz'.format(sj))
@@ -254,7 +255,7 @@ if __name__ == '__main__':
             im_T1_normalised = normalise_below_labels(im_T1, im_segm)
             im_S0_normalised = normalise_below_labels(im_S0, im_segm)
 
-            # pfi_T1 = jph(pfo_chart_sj, 'mod', '{0}_T1_normalised.nii.gz'.format(sj))
-            # pfi_S0 = jph(pfo_chart_sj, 'mod', '{0}_S0_normalised.nii.gz'.format(sj))
+            pfi_T1 = jph(pfo_chart_sj, 'mod', '{0}_T1_normalised.nii.gz'.format(sj))
+            pfi_S0 = jph(pfo_chart_sj, 'mod', '{0}_S0_normalised.nii.gz'.format(sj))
             nib.save(im_T1_normalised, pfi_T1)
             nib.save(im_S0_normalised, pfi_S0)
