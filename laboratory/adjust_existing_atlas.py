@@ -229,7 +229,7 @@ if __name__ == '__main__':
             if os.path.exists(pfi_segm):
                 custom_cleaner(pfi_segm)
 
-    if True:
+    if False:
         ''' normalise values below T1 and S0 : use binarised segmentation with the. '''
         for sj in ['2502']:
             print 'normalisation T1, S0, chart {}'.format(sj)

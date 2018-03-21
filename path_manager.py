@@ -1,9 +1,10 @@
 """
-Module to store the paths used throughout the code.
+Module where the paths names are called throughout the code.
 prefix pfo_ ->  path to folder
 prefix pfi_ ->  path to file
-
-Save the downloaded MultiAtlas in the folder pfo_root.
+-----
+pfo_root is where the folders with the elaborations are created and where the data downloaded from Zenodo should be
+downloaded.
 """
 
 import os
@@ -23,7 +24,7 @@ atlas_subjects = ['1201', '1203', '1305', '1404', '1507', '1510', '1702', '1805'
 # Multi atlas paths:
 pfo_download_from_Zenodo = jph(pfo_root, 'Zenodo')  # Change here, where you downloaded the data from Zenodo.
 pfo_multi_atlas = jph(pfo_download_from_Zenodo, 'MultiAtlas')
-pfi_labels_descriptor = jph(pfo_root, pfo_multi_atlas, 'labels_descriptor.txt')
+pfi_labels_descriptor = jph(pfo_multi_atlas, 'labels_descriptor.txt')
 
 # Leave one out:
 pfo_atlas_validation_leave_one_out = jph(pfo_root, 'C_atlas_validation_leave_one_out')
