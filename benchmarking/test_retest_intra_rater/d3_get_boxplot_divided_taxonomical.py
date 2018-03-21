@@ -20,6 +20,8 @@ if __name__ == '__main__':
     df_measures_auto_man1_taxo = pa.read_pickle(ph.pfi_pickled_scoring_auto_man1_taxo)
     df_measures_auto_man2_taxo = pa.read_pickle(ph.pfi_pickled_scoring_auto_man2_taxo)
 
+    plt.rc('font', family='serif')
+
     fig, ax = plt.subplots(figsize=(10, 3), nrows=1, ncols=4)
     fig.canvas.set_window_title('Auto vs man1 vs man2 - intra rater variability manual adjustment taxonomical')
 
@@ -70,4 +72,5 @@ if __name__ == '__main__':
     ax[3].set_xticklabels(x_labels, rotation=45)
 
     fig.tight_layout()
+
     plt.savefig(ph.pfi_boxplot_comparison_taxo, format='pdf', dpi=200)
