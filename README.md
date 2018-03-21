@@ -1,6 +1,6 @@
 
 <p align="center"> 
-<img src="https://github.com/gift-surg/MRImultiAtlasForNeonatalRabbitBrain/blob/master/docs/annotated_slice.jpg" width="450">
+<img src="https://github.com/gift-surg/MRImultiAtlasForNeonatalRabbitBrain/blob/master/docs/annotated_slice.jpg" width="400">
 </p>
 
 
@@ -17,18 +17,16 @@ figures of the [documentation][paperlink] - (coming soon)
     - Install [SPOT-A-NeonatalRabbit][spotaneonatalrabbit] and related dependencies
     - Download the data from [here][multiatlasonzenodo] - coming soon 
     
-+ Installation
-    - We recommend to install the software in development mode, inside a python [virtual-environment][virtualenvironment] with the following commands.
-        ```
-        cd <folder where to clone the code>
-        git clone https://github.com/SebastianoF/MRImultiAtlasForNeonatalRabbitBrain.git
-        cd MRImultiAtlasForNeonatalRabbitBrain
-        source <virual-env with the required libraries>/bin/activate
-        pip install -e .
-        ```
 + Setup
     - After downloading the dataset - coming soon - set the path in 
-    the python module `./path manager.py` as indicated in the comments.
+    the python module `./path manager.py` as indicated in the comments. In this module you will find the only 
+    paths that you will need to change.
+    - As a research software, sometimes important indications are annotated into comments inside the code.
+
++ Usage
+    - We suggest to install the required libraries in a [virtual-environment][virtualenvironment].
+    - Each module in the project structure can be run independently from command line.
+
 
 ## Code testing
 The core methods are in the external libraries. Run the tests of 
