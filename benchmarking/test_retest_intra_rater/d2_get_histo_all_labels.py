@@ -44,8 +44,8 @@ if __name__ == '__main__':
         # ax[0].set_xticklabels([])
         ax[0].set_xticklabels(region_names, ha='right', rotation=45, fontsize=6)
 
-        mu_dice = np.mean([m for m in one_minus_dice if m > 0])
-        std_dice = np.std([m for m in one_minus_dice if m > 0])
+        mu_dice = np.mean([m for m in one_minus_dice if m > 10e-6])
+        std_dice = np.std([m for m in one_minus_dice if m > 10e-6])
 
         ax[0].annotate('mu(>0) {0:1.4f}\nstd(>0) {1:1.4f}'.format(mu_dice, std_dice), xy=(0, 0.125), xytext=(0, 0.125), fontsize=10)
 
@@ -59,8 +59,8 @@ if __name__ == '__main__':
         # ax[1].set_xticklabels([])
         ax[1].set_xticklabels(region_names, ha='right', rotation=45, fontsize=6)
 
-        mu_cd = np.mean([m for m in significant_cov_dist if m > 0])
-        std_cd = np.std([m for m in significant_cov_dist if m > 0])
+        mu_cd = np.mean([m for m in significant_cov_dist if m > 10e-6])
+        std_cd = np.std([m for m in significant_cov_dist if m > 10e-6])
 
         ax[1].annotate('mu(>0) {0:1.4f}\nstd(>0) {1:1.4f}'.format(mu_cd, std_cd), xy=(0, .5), xytext=(0, .5), fontsize=10)
 
@@ -77,8 +77,8 @@ if __name__ == '__main__':
         # ax[2].set_xticklabels([])
         ax[2].set_xticklabels(region_names, ha='right', rotation=45, fontsize=6)
 
-        mu_hd = np.mean([m for m in df_measures_all['hausdorff_distance'] if m > 0])
-        std_hd = np.std([m for m in df_measures_all['hausdorff_distance'] if m > 0])
+        mu_hd = np.mean([m for m in df_measures_all['hausdorff_distance'] if m > 10e-6])
+        std_hd = np.std([m for m in df_measures_all['hausdorff_distance'] if m > 10e-6])
 
         ax[2].annotate('mu(>0) {0:1.4f}\nstd(>0) {1:1.4f}'.format(mu_hd, std_hd), xy=(0, 0.75), xytext=(0, 0.75), fontsize=10)
 
@@ -105,3 +105,4 @@ if __name__ == '__main__':
 
         fig.tight_layout()
         plt.savefig(pfi_image_output, format='pdf', dpi=200)
+        plt.show()

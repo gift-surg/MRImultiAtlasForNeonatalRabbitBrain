@@ -83,7 +83,7 @@ def run_create_boxplots_and_barchart_same_graph():
             if metric == 'dice_score':
                 ax[metric_id].legend(prop={'family': 'serif'})
 
-        # pfi_where_to_save = jph(path_manager.pfo_data_elaborations_leave_one_out, 'Boxplot_{0}_{1}.pdf'.format('taxonomical', method))
+        ax[3].set_xlabel('Macro-regions', fontsize=9)
 
         # plt.legend(prop={'family': 'serif'})
         plt.tight_layout()
