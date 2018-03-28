@@ -1,5 +1,6 @@
 """
-Generate 3D surface rendering from a selected model subject from the multi-atlas (1305).
+Simply opens ITK-snap with the correctly grouped segmentations and label descriptor to provide th screenshot for
+ the 3D surface rendering from a selected model subject from the multi-atlas (1305).
 """
 import os
 from os.path import join as jph
