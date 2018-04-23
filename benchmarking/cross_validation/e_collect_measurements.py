@@ -146,5 +146,5 @@ def get_local_measurements(nomenclature):
 
 
 if __name__ == '__main__':
-    # get_global_measurements()
+    get_global_measurements()
     get_local_measurements(nomenclature=['taxonomical', 'all'])

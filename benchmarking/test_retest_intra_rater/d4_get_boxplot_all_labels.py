@@ -15,7 +15,7 @@ if __name__ == '__main__':
                                   'hausdorff_distance': 'Hausdorff Distance',
                                   'normalised_symmetric_contour_distance': 'Normalised Symmetric Contour Distance'}
 
-    x_labels = ['man1 vs man2', 'auto vs man1', 'auto vs man2']
+    x_labels = ['adj1 vs adj2', 'auto vs adj1', 'auto vs adj2']
 
     df_measures_man1_man2_all = pa.read_pickle(ph.pfi_pickled_scoring_man1_man2_all)
     df_measures_auto_man1_all = pa.read_pickle(ph.pfi_pickled_scoring_auto_man1_all)

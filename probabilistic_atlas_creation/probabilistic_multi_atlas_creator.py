@@ -12,7 +12,8 @@ from LABelsToolkit.tools.image_colors_manipulations.relabeller import relabeller
 import path_manager
 
 
-def binarise_and_adjust_mask_from_segmentation_path(pfi_segm_input, pfi_mask_output, pfo_temp, subject_name, labels_to_exclude=()):
+def binarise_and_adjust_mask_from_segmentation_path(pfi_segm_input, pfi_mask_output, pfo_temp, subject_name,
+                                                    labels_to_exclude=(), dil_factor=1, ero_factor=1):
     """
     Sequence of topological operation to pass from the manual segmentation to a single binary mask
     covering the brain tissue and excluding the skull.
@@ -21,6 +22,8 @@ def binarise_and_adjust_mask_from_segmentation_path(pfi_segm_input, pfi_mask_out
     :param pfo_temp:
     :param subject_name:
     :param labels_to_exclude:
+    :param dil_factor: dilation factor before erosion
+    :param ero_factor: erosion factor after dilation
     :return:
     """
     pfi_intermediate = jph(pfo_temp, '{}_tmp_binarisation.nii.gz'.format(subject_name))
@@ -39,9 +42,9 @@ def binarise_and_adjust_mask_from_segmentation_path(pfi_segm_input, pfi_mask_out
 
     # fill and dil the binarised segmentation
     print_and_run('seg_maths {0} -fill {1}'.format(pfi_intermediate, pfi_intermediate))
-    print_and_run('seg_maths {0} -dil 1 {0}'.format(pfi_intermediate))
-    print_and_run('seg_maths {0} -ero 1 {0}'.format(pfi_intermediate))
-    print_and_run('seg_maths {0} -fill {0}'.format(pfi_intermediate))
+    print_and_run('seg_maths {0} -dil {1} {0}'.format(pfi_intermediate, dil_factor))
+    print_and_run('seg_maths {0} -ero {1} {0}'.format(pfi_intermediate, ero_factor))
+    # print_and_run('seg_maths {0} -fill {0}'.format(pfi_intermediate))
 
     print_and_run('seg_maths {0} -fill {1}'.format(pfi_intermediate, pfi_mask_output))
     # print_and_run('seg_maths {0} -smol 1.5 {0}'.format(pfi_mask_output))

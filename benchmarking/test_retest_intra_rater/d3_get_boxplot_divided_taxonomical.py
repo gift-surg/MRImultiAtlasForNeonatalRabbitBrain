@@ -14,7 +14,7 @@ if __name__ == '__main__':
                                   'hausdorff_distance': 'Hausdorff Distance',
                                   'normalised_symmetric_contour_distance': 'Normalised Symmetric Contour Distance'}
 
-    x_labels = ['man1 vs man2', 'auto vs man1', 'auto vs man2']
+    x_labels = ['adj1 vs adj2', 'auto vs adj1', 'auto vs adj2']
 
     df_measures_man1_man2_taxo = pa.read_pickle(ph.pfi_pickled_scoring_man1_man2_taxo)
     df_measures_auto_man1_taxo = pa.read_pickle(ph.pfi_pickled_scoring_auto_man1_taxo)
@@ -68,9 +68,10 @@ if __name__ == '__main__':
     ax[3].boxplot(data_nscd)
     ax[3].set_ylabel('mm')
     ax[3].set_ylim([-0.001, 0.02])  # set manually for easy comparisons between figures.
-    ax[3].set_xticks(range(1,4))
+    ax[3].set_xticks(range(1, 4))
     ax[3].set_xticklabels(x_labels, rotation=45)
 
     fig.tight_layout()
 
-    plt.savefig(ph.pfi_boxplot_comparison_taxo, format='pdf', dpi=200)
+    # plt.savefig(ph.pfi_boxplot_comparison_taxo, format='pdf', dpi=200)
+    plt.show()
