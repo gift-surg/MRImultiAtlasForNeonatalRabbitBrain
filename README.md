@@ -4,7 +4,7 @@
 </p>
 
 
-# MRImultiAtlasForNeonatalRabbitBrain (MRIrb)
+# A Magnetic Resonance Multi-Atlas For Neonatal Rabbit Brain (nrBrain)
 
 [Repository][this_repository] with the Python code for the benchmarking and validation of the Neonatal Rabbit brain Multi-Atlas
 proposed in the [Neuroimage paper][paperlink]. Dataset can be found [here][multiatlasonzenodo]. 
