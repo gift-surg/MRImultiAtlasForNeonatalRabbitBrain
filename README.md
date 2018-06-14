@@ -4,10 +4,11 @@
 </p>
 
 
-# A Magnetic Resonance Multi-Atlas For Neonatal Rabbit Brain (nrBrain)
+# MRI Multi-Atlas For the Neonatal Rabbit Brain (MRImultiAtlasForNeonatalRabbitBrain)
 
 [Repository][this_repository] with the Python code for the benchmarking and validation of the Neonatal Rabbit brain Multi-Atlas
-proposed in the [Neuroimage paper][paperlink]. Dataset can be found [here][multiatlasonzenodo]. 
+proposed in the [Neuroimage paper][paperlink]. Dataset can be found [here][multiatlasonzenodo]. To use the multi-atlas for 
+the automatic segmentation of a new dataset, consider in particular [SPOT-A-NeonatalRabbit][spotaneonatalrabbit].
 
 ## How to use 
 
