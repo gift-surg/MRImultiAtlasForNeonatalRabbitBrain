@@ -17,7 +17,7 @@ proposed in the [Neuroimage paper][paperlink]. Dataset can be found [here][multi
     - Download the data from the zenodo repository [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1289776.svg)](https://doi.org/10.5281/zenodo.1289776)
     
 + Setup
-    - After downloading the dataset - coming soon - set the path in 
+    - After downloading the dataset, set the path in 
     the python module `./path manager.py` as indicated in the comments. In this module you will find the only 
     paths that you will need to change.
     - As a research software, sometimes important indications are annotated into comments inside the code.
@@ -38,10 +38,12 @@ feature requests, code re-factoring and re-styling.
 
 ## Authors and Acknowledgments
 
-+ The MRI Neonatal Rabbit Multi-Atlas and related code is developed within the [GIFT-surg research project][giftsurg] 
-in collaboration with KU Leuven (Belgium) and UCL (UK).
++ The MRI Neonatal Rabbit Multi-Atlas and related code is developed within the [GIFT-surg research project][giftsurg], a 
+ collaborative project between the Univeristy College London (UK) and Katolische Universitat Leuven (Belgium).
 + This work was supported by Wellcome / Engineering and Physical Sciences Research Council (EPSRC) [WT101957; NS/A000027/1; 203145Z/16/Z]. 
-+ The upcomging documentation with provide the full list of authors and acknowledgments.
++ The full list of authors and acknowledgments can be found in the [Neuroimage paper][paperlink], please use the same reference
+to cite the dataset and the code if you find it useful for your research.
+
 
 
 [this_repository]: https://github.com/gift-surg/MRImultiAtlasForNeonatalRabbitBrain
