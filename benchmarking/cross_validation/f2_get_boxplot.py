@@ -31,15 +31,17 @@ def run_create_boxplots(nomenclature, see=False):
     else:
         raise IOError
 
-    dict_metric_to_metric_name = {'dice_score': 'Dice Score',
+    dict_metric_to_metric_name = {'dice_score': '1 - Dice Score',
                                   'covariance_distance': 'Covariance Distance',
                                   'hausdorff_distance': 'Hausdorff Distance',
                                   'normalised_symmetric_contour_distance': 'Normalised Symmetric Contour Distance'}
 
-    dict_y_axis_metric = {'dice_score': '%',
+    dict_y_axis_metric = {'dice_score': '',
                                   'covariance_distance': 'mm',
                                   'hausdorff_distance': 'mm',
                                   'normalised_symmetric_contour_distance': 'mm'}
+
+    plt.rc('font', family='serif')
 
     for method in param.methods_names:
 
@@ -65,10 +67,12 @@ def run_create_boxplots(nomenclature, see=False):
         # plt.rc('text', usetex=True)
         # plt.rc('font', family='serif')
         plt.tight_layout()
-        plt.savefig(pfi_where_to_save, format='pdf', dpi=330)
+        # plt.savefig(pfi_where_to_save, format='pdf', dpi=330)
         if see:
             plt.show()
 
 if __name__ == '__main__':
-    run_create_boxplots(nomenclature='all', see=True)
+    # run_create_boxplots(nomenclature='all', see=True)
     run_create_boxplots(nomenclature='taxonomical', see=True)
+
+    print('To get the latest boxplot, run the python module cross_visualisation.py')

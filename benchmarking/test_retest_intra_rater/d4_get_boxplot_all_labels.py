@@ -35,12 +35,12 @@ if __name__ == '__main__':
     sns.set(color_codes=True)
 
     # Dice score
-    ax[0].set_title('1 - Dice Score')
+    ax[0].set_title("1 - Dice's Score")
     data_ds = [[1 - df_measures_man1_man2_all['dice_score'][id] for id in df_measures_man1_man2_all.index if df_measures_man1_man2_all["dice_smaller_than_1"][id]],
                [1 - df_measures_auto_man1_all['dice_score'][id] for id in df_measures_auto_man1_all.index if df_measures_auto_man1_all["dice_smaller_than_1"][id]],
                [1 - df_measures_auto_man2_all['dice_score'][id] for id in df_measures_auto_man2_all.index if df_measures_auto_man2_all["dice_smaller_than_1"][id]]]
     ax[0].boxplot(data_ds)
-    ax[0].set_ylabel('%', fontsize=8)
+    ax[0].set_ylabel('', fontsize=8)
     ax[0].set_ylim([-0.001, 0.10])  # set manually for easy comparisons between figures.
     ax[0].set_xticks(range(1, 4))
     ax[0].set_xticklabels(x_labels, rotation=45, fontsize=8)
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     ax[3].boxplot(data_nscd)
     ax[3].set_ylabel('mm', fontsize=8)
     ax[3].set_ylim([-0.001, 0.04])  # set manually for easy comparisons between figures.
-    ax[3].set_xticks(range(1,4))
+    ax[3].set_xticks(range(1, 4))
     ax[3].set_xticklabels(x_labels, rotation=45, fontsize=8)
 
     fig.tight_layout()

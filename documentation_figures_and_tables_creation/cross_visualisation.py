@@ -30,7 +30,7 @@ def run_create_boxplots_and_barchart_same_graph():
                                  'Rombocephalon', 'Mesencephalon', 'Thalamus', 'Allocortex', 'Hipp. Area',
                                  'Deep Cortex', 'Basal Ganglia', 'Septum', 'Isocortex']
 
-    add_bars = False
+    add_bars = True
 
     fontsize = 8
     ha = 'center'
@@ -41,7 +41,7 @@ def run_create_boxplots_and_barchart_same_graph():
                                   'hausdorff_distance': 'Hausdorff Distance',
                                   'normalised_symmetric_contour_distance': 'Normalised Symmetric Contour Distance'}
 
-    dict_y_axis_metric = {'dice_score': '%',
+    dict_y_axis_metric = {'dice_score': '',
                                   'covariance_distance': 'mm',
                                   'hausdorff_distance': 'mm',
                                   'normalised_symmetric_contour_distance': 'mm'}
@@ -116,7 +116,6 @@ def run_create_boxplots_and_barchart_same_graph():
             if scales[metric_id] == 'log':
                 ax[metric_id].set_yscale("log")
                 y_lab += ' (log scale)'
-
 
             ax[metric_id].set_ylabel(y_lab, fontsize=9)
             ax[metric_id].set_xticks(range(1, len(region_names) + 1))

@@ -50,5 +50,8 @@ if __name__ == '__main__':
     df_means = pa.DataFrame(list_pa_series_mean, names_comparisons)
     df_std = pa.DataFrame(list_pa_series_std, names_comparisons)
 
-    df_means.to_latex(ph.pfi_table_average_taxo)
-    df_std.to_latex(ph.pfi_table_std_taxo)
+    print df_means
+    print df_std
+
+    # df_means.to_latex(ph.pfi_table_average_taxo)
+    # df_std.to_latex(ph.pfi_table_std_taxo)

@@ -16,7 +16,7 @@ if os.path.exists('/cluster/project0'):
     pfo_root = '/cluster/project0/fetalsurgery/Data/MRI/KUL_preterm_rabbit_model/data/'
     bfc_corrector_cmd = '/share/apps/cmic/NiftyMIDAS/bin/niftkMTPDbc'
 else:
-    pfo_root = '/Volumes/sebastianof/rabbits'
+    pfo_root = '/Volumes/SmartWare/rabbit'
     bfc_corrector_cmd = '/Applications/niftk-16.1.0/NiftyView.app/Contents/MacOS/niftkMTPDbc'
 
 atlas_subjects = ['1201', '1203', '1305', '1404', '1507', '1510', '1702', '1805', '2002', '2502', '3301', '3404']

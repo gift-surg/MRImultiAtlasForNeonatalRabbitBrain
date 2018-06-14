@@ -68,13 +68,16 @@ def get_measurements_by_metric_method_and_nomenclature(metric, method, nomenclat
 
     for sj in path_manager.atlas_subjects:
         print sj
-        pfo_segmentations_sj = jph(path_manager.pfo_atlas_validation_leave_one_out, sj, 'segm')
+        pfo_segmentations_sj_auto = jph(path_manager.pfo_atlas_validation_leave_one_out, sj, 'segm')
+
+        # get manual directly from the multi-atlas
+        pfo_segmentations_sj_man = jph(path_manager.pfo_download_from_Zenodo, 'MultiAtlas', sj, 'segm')
         if nomenclature == 'all':
-            pfi_manual_segm = jph(pfo_segmentations_sj, '{}_segm.nii.gz'.format(sj))
-            pfi_automatic_segm = jph(pfo_segmentations_sj, 'automatic', '{0}_{1}.nii.gz'.format(sj, method))
+            pfi_manual_segm = jph(pfo_segmentations_sj_man, '{}_segm.nii.gz'.format(sj))
+            pfi_automatic_segm = jph(pfo_segmentations_sj_auto, 'automatic', '{0}_{1}.nii.gz'.format(sj, method))
         else:
-            pfi_manual_segm = jph(pfo_segmentations_sj, 'elaborations', '{0}_segm_{1}.nii.gz'.format(sj, nomenclature))
-            pfi_automatic_segm = jph(pfo_segmentations_sj, 'elaborations', '{0}_{1}_{2}.nii.gz'.format(sj, method, nomenclature))
+            pfi_manual_segm = jph(pfo_segmentations_sj_auto, 'elaborations', '{0}_segm_{1}.nii.gz'.format(sj, nomenclature))
+            pfi_automatic_segm = jph(pfo_segmentations_sj_auto, 'elaborations', '{0}_{1}_{2}.nii.gz'.format(sj, method, nomenclature))
 
         assert os.path.exists(pfi_manual_segm), pfi_manual_segm
         assert os.path.exists(pfi_automatic_segm), pfi_automatic_segm
@@ -146,5 +149,5 @@ def get_local_measurements(nomenclature):
 
 
 if __name__ == '__main__':
-    get_global_measurements()
-    get_local_measurements(nomenclature=['taxonomical', 'all'])
+    # get_global_measurements()
+    get_local_measurements(nomenclature=['all', ])  # 'taxonomical',
