@@ -6,7 +6,7 @@
 
 # MRImultiAtlasForNeonatalRabbitBrain (MRIrb)
 
-Code for the benchmarking and validation of the Neonatal Rabbit brain Multi-Atlas 
+[Repository][this_repository] for the benchmarking and validation of the Neonatal Rabbit brain Multi-Atlas 
 (downloadable [here][multiatlasonzenodo]) and to reproduce the
 figures of the [documentation][paperlink].
 
@@ -15,7 +15,7 @@ figures of the [documentation][paperlink].
 + Requirements
     - Python 2 (**Python 2 only** for the current release)
     - Install [SPOT-A-NeonatalRabbit][spotaneonatalrabbit] and related dependencies
-    - Download the data from [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1289776.svg)](https://doi.org/10.5281/zenodo.1289776)
+    - Download the data from the zenodo repository [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1289776.svg)](https://doi.org/10.5281/zenodo.1289776)
     
 + Setup
     - After downloading the dataset - coming soon - set the path in 
@@ -45,7 +45,7 @@ in collaboration with KU Leuven (Belgium) and UCL (UK).
 + The upcomging documentation with provide the full list of authors and acknowledgments.
 
 
-
+[this_repository] : https://github.com/gift-surg/MRImultiAtlasForNeonatalRabbitBrain
 [paperlink]: https://doi.org/10.1016/j.neuroimage.2018.06.029
 [multiatlasonzenodo]: https://doi.org/10.5281/zenodo.1289776
 [spotaneonatalrabbit]: https://github.com/gift-surg/SPOT-A-NeonatalRabbit
