@@ -45,7 +45,7 @@ in collaboration with KU Leuven (Belgium) and UCL (UK).
 + The upcomging documentation with provide the full list of authors and acknowledgments.
 
 
-[this_repository] : https://github.com/gift-surg/MRImultiAtlasForNeonatalRabbitBrain
+[this_repository]: https://github.com/gift-surg/MRImultiAtlasForNeonatalRabbitBrain
 [paperlink]: https://doi.org/10.1016/j.neuroimage.2018.06.029
 [multiatlasonzenodo]: https://doi.org/10.5281/zenodo.1289776
 [spotaneonatalrabbit]: https://github.com/gift-surg/SPOT-A-NeonatalRabbit
