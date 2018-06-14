@@ -4,7 +4,7 @@
 </p>
 
 
-# MRI Multi-Atlas For the Neonatal Rabbit Brain (MRImultiAtlasForNeonatalRabbitBrain)
+# MRI Multi-Atlas For the Neonatal Rabbit Brain
 
 [Repository][this_repository] with the Python code for the benchmarking and validation of the Neonatal Rabbit brain Multi-Atlas
 proposed in the [Neuroimage paper][paperlink]. Dataset can be found [here][multiatlasonzenodo]. To use the multi-atlas for 
