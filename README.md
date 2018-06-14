@@ -6,9 +6,8 @@
 
 # MRImultiAtlasForNeonatalRabbitBrain (MRIrb)
 
-[Repository][this_repository] for the benchmarking and validation of the Neonatal Rabbit brain Multi-Atlas 
-(downloadable [here][multiatlasonzenodo]) and to reproduce the
-figures of the [documentation][paperlink].
+[Repository][this_repository] with the Python code for the benchmarking and validation of the Neonatal Rabbit brain Multi-Atlas
+proposed in the [Neuroimage paper][paperlink]. Dataset can be found [here][multiatlasonzenodo]. 
 
 ## How to use 
 
