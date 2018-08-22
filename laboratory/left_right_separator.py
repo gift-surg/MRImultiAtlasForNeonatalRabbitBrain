@@ -2,8 +2,8 @@ import os
 from os.path import join as jph
 import nibabel as nib
 
-from LABelsToolkit.tools.image_colors_manipulations.relabeller import relabel_half_side_one_label
-from LABelsToolkit.tools.aux_methods.utils_nib import set_new_data
+from nilabel.tools.image_colors_manipulations.relabeller import relabel_half_side_one_label
+from nilabel.tools.aux_methods.utils_nib import set_new_data
 
 import path_manager
 

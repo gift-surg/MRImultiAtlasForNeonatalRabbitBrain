@@ -41,7 +41,8 @@ import benchmarking.cross_validation.a_paths_and_parameters_cross_validation as 
 import nibabel as nib
 import numpy as np
 import pandas as pa
-from LABelsToolkit.tools.caliber import distances as dist
+
+from nilabel.tools.caliber import distances as dist
 
 from benchmarking.a_nomenclatures import nomenclature_taxonomical, nomenclature_anatomical
 import benchmarking.cross_validation.a_paths_and_parameters_cross_validation as ph

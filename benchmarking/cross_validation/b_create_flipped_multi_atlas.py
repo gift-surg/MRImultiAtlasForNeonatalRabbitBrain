@@ -8,10 +8,11 @@ from os.path import join as jph
 
 import path_manager
 
-from LABelsToolkit.tools.aux_methods.utils_nib import set_new_data
-from LABelsToolkit.tools.aux_methods.utils import print_and_run
-from LABelsToolkit.main import LABelsToolkit as LabT
-from LABelsToolkit.tools.descriptions.manipulate_descriptors import LabelsDescriptorManager as LdM
+from nilabel.tools.aux_methods.utils_nib import set_new_data
+from nilabel.tools.aux_methods.utils import print_and_run
+from nilabel.tools.aux_methods.label_descriptor_manager import LabelsDescriptorManager as LdM
+
+from nilabel.main import Nilabel as NiL
 
 
 def flip_data(in_data, axis='x'):
@@ -81,7 +82,7 @@ def flipper(pfo_atlas, atlas_charts_names, sufix_atlas, labels_descriptor):
                         left_labels = [l for l in ld_dict.keys() if 'left' in ld_dict[l][2].lower()]
                         right_labels = [l + 1 for l in left_labels]
 
-                        lt = LabT()
+                        lt = NiL()
                         lt.manipulate_labels.relabel(pfi_nii_flipped, pfi_nii_flipped,
                                                      list_old_labels=left_labels + right_labels,
                                                      list_new_labels=right_labels + left_labels)

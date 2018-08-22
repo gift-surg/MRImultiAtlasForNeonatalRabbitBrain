@@ -1,6 +1,6 @@
 import benchmarking.test_retest_intra_rater.a_paths_intra_rater as ph
-from LABelsToolkit.main import LABelsToolkit as LabT
-from LABelsToolkit.tools.caliber import distances as dist
+from nilabel.main import Nilabel as NiL
+from nilabel.tools.caliber import distances as dist
 
 from benchmarking.a_nomenclatures import nomenclature_taxonomical
 
@@ -10,9 +10,9 @@ def collect_measurements_intra_rater_tst_retest():
     print '\n\nTaxonomical division inter-rater test-re-test'
     print '==================='
     print 'Compare man1 with man2 taxonomical'
-    lt = LabT()
-    lt.measure.verbose = True
-    man1_man2_measures_divide_taxonomical = lt.measure.dist(ph.pfi_segm_man1_divided_taxonomical,
+    nil = NiL()
+    nil.measure.verbose = True
+    man1_man2_measures_divide_taxonomical = nil.measure.dist(ph.pfi_segm_man1_divided_taxonomical,
                                                              ph.pfi_segm_man2_divided_taxonomical,
                                                              labels_list=nomenclature_taxonomical.keys(),
                                                              labels_names=nomenclature_taxonomical.keys(),
@@ -26,47 +26,47 @@ def collect_measurements_intra_rater_tst_retest():
     print 'Compare man1 with man2 divided taxonomical'
     print man1_man2_measures_divide_taxonomical
 
-    del lt
+    del nil
 
     print '\n\n==================='
     print 'Compare auto with man1 taxonomical'
-    lt = LabT()
-    lt.measure.verbose = True
-    auto_man1_measures_divide_taxonomical = lt.measure.dist(ph.pfi_segm_auto_divided_taxonomical,
-                                                            ph.pfi_segm_man1_divided_taxonomical,
-                                                            labels_list=nomenclature_taxonomical.keys(),
-                                                            labels_names=nomenclature_taxonomical.keys(),
-                                                            metrics=(dist.dice_score,
-                                                                     dist.covariance_distance,
-                                                                     dist.hausdorff_distance,
-                                                                     dist.normalised_symmetric_contour_distance),
-                                                            where_to_save=ph.pfi_pickled_scoring_auto_man1_taxo)
+    nil = NiL()
+    nil.measure.verbose = True
+    auto_man1_measures_divide_taxonomical = nil.measure.dist(ph.pfi_segm_auto_divided_taxonomical,
+                                                             ph.pfi_segm_man1_divided_taxonomical,
+                                                             labels_list=nomenclature_taxonomical.keys(),
+                                                             labels_names=nomenclature_taxonomical.keys(),
+                                                             metrics=(dist.dice_score,
+                                                                      dist.covariance_distance,
+                                                                      dist.hausdorff_distance,
+                                                                      dist.normalised_symmetric_contour_distance),
+                                                             where_to_save=ph.pfi_pickled_scoring_auto_man1_taxo)
 
     print '---------------'
     print 'Compare auto with man1 divided taxonomical'
     print auto_man1_measures_divide_taxonomical
 
-    del lt
+    del nil
 
     print '\n\n==================='
     print 'Compare auto with man2  taxonomical'
-    lt = LabT()
-    lt.measure.verbose = True
-    auto_man2_measures_divide_taxonomical = lt.measure.dist(ph.pfi_segm_auto_divided_taxonomical,
-                                                            ph.pfi_segm_man2_divided_taxonomical,
-                                                            labels_list=nomenclature_taxonomical.keys(),
-                                                            labels_names=nomenclature_taxonomical.keys(),
-                                                            metrics=(dist.dice_score,
-                                                                     dist.covariance_distance,
-                                                                     dist.hausdorff_distance,
-                                                                     dist.normalised_symmetric_contour_distance),
-                                                            where_to_save=ph.pfi_pickled_scoring_auto_man2_taxo)
+    nil = NiL()
+    nil.measure.verbose = True
+    auto_man2_measures_divide_taxonomical = nil.measure.dist(ph.pfi_segm_auto_divided_taxonomical,
+                                                             ph.pfi_segm_man2_divided_taxonomical,
+                                                             labels_list=nomenclature_taxonomical.keys(),
+                                                             labels_names=nomenclature_taxonomical.keys(),
+                                                             metrics=(dist.dice_score,
+                                                                      dist.covariance_distance,
+                                                                      dist.hausdorff_distance,
+                                                                      dist.normalised_symmetric_contour_distance),
+                                                             where_to_save=ph.pfi_pickled_scoring_auto_man2_taxo)
 
     print '---------------'
     print 'Compare auto with man2 divided taxonomical'
     print auto_man2_measures_divide_taxonomical
 
-    del lt
+    del nil
 
 
 if __name__ == '__main__':

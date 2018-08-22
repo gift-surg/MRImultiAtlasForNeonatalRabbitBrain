@@ -10,8 +10,8 @@ import nibabel as nib
 from matplotlib import rc
 from matplotlib import pyplot as plt
 
-from LABelsToolkit.main import LABelsToolkit as LabT
-from LABelsToolkit.tools.descriptions.manipulate_descriptors import LabelsDescriptorManager as LdM
+from nilabel.main import Nilabel as NiL
+from nilabel.tools.aux_methods.label_descriptor_manager import LabelsDescriptorManager as LdM
 
 import path_manager
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
         print('From segmentations to RGB with the selected labels:')
 
-        lt = LabT()
+        nil = NiL()
         ldm = LdM(pfi_labels_descritpor)
 
         for sj_id in path_manager.atlas_subjects:
@@ -57,9 +57,9 @@ if __name__ == "__main__":
             pfi_rgb_segmentation = jph(pfo_tmp, '{}_rgb.nii.gz'.format(sj_id))
 
             # remove all other labels:
-            lt.manipulate_labels.assign_all_other_labels_the_same_value(pfi_segmentation, pfi_my_labels_segmentation,
-                                                                        labels_to_keep=labels_to_keep,
-                                                                        same_value_label=0)
+            nil.manipulate_labels.assign_all_other_labels_the_same_value(pfi_segmentation, pfi_my_labels_segmentation,
+                                                                         labels_to_keep=labels_to_keep,
+                                                                         same_value_label=0)
             # Save the selected labels
             im_rgb = nib.load(pfi_my_labels_segmentation)
             im_rgb = ldm.get_corresponding_rgb_image(im_rgb, invert_black_white=True)

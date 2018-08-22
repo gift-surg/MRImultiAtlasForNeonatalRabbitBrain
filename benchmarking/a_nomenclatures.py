@@ -1,7 +1,7 @@
 import os
 from collections import OrderedDict
 
-from LABelsToolkit.tools.descriptions.manipulate_descriptors import LabelsDescriptorManager
+from nilabel.tools.aux_methods.label_descriptor_manager import LabelsDescriptorManager
 
 
 nomenclature_anatomical = OrderedDict(

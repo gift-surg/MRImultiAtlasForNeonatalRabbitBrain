@@ -4,8 +4,8 @@ Common parameters used by other modules in this python package.
 
 from os.path import join as jph
 
-from LABelsToolkit.tools.descriptions.manipulate_descriptors import LabelsDescriptorManager
-from LABelsToolkit.tools.caliber.distances import dice_score, covariance_distance, hausdorff_distance, \
+from nilabel.tools.aux_methods.label_descriptor_manager import LabelsDescriptorManager
+from nilabel.tools.caliber.distances import dice_score, covariance_distance, hausdorff_distance, \
     normalised_symmetric_contour_distance
 
 import path_manager
@@ -49,4 +49,3 @@ pfi_df_global_outline_error = jph(path_manager.pfo_data_elaborations_leave_one_o
 pfi_df_global_dice_score = jph(path_manager.pfo_data_elaborations_leave_one_out, 'global_dice_score.pickle')
 
 pfi_barchart_global_dice_score_per_subjects = jph(path_manager.pfo_data_elaborations_leave_one_out, 'Barchart_global_dice_score.pdf')
-

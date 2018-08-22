@@ -6,7 +6,7 @@ grouping as proposed in documentation, Table 2, see also the python module
 import os
 from os.path import join as jph
 
-from LABelsToolkit.main import LABelsToolkit as LabT
+from nilabel.main import Nilabel as NiL
 
 import path_manager
 import benchmarking.cross_validation.a_paths_and_parameters_cross_validation as param
@@ -52,10 +52,10 @@ def run_separate_brain_regions(controller):
                 print '\n==================='
                 print '\n\nDivide_manual_segm nomenclature {}, subject {}'.format(controller['Nomenclature'], sj)
                 print 'From {0} to {1}'.format(pfi_segm_manual, pfi_segm_manual_divided_nomenclature)
-            lt = LabT()
-            lt.manipulate_labels.relabel(pfi_segm_manual, pfi_segm_manual_divided_nomenclature,
-                                         list_old_labels=nomenclature_old_labels,
-                                         list_new_labels=nomenclature_new_labels)
+            nil = NiL()
+            nil.manipulate_labels.relabel(pfi_segm_manual, pfi_segm_manual_divided_nomenclature,
+                                          list_old_labels=nomenclature_old_labels,
+                                          list_new_labels=nomenclature_new_labels)
 
         # -------------- create automatic segmentations divided Taxonomical --------------
 
@@ -75,10 +75,10 @@ def run_separate_brain_regions(controller):
                     print('\n===================')
                     print('\nDivide_automatic_segm nomenclature {}, subject {}'.format(controller['Nomenclature'], sj))
                     print 'From {0} to {1}'.format(pfi_segm_automatic, pfi_segm_automatic_divided_by_nomenclature)
-                    lt = LabT()
-                    lt.manipulate_labels.relabel(pfi_segm_automatic, pfi_segm_automatic_divided_by_nomenclature,
-                                                 list_old_labels=nomenclature_old_labels,
-                                                 list_new_labels=nomenclature_new_labels)
+                    nil = NiL()
+                    nil.manipulate_labels.relabel(pfi_segm_automatic, pfi_segm_automatic_divided_by_nomenclature,
+                                                  list_old_labels=nomenclature_old_labels,
+                                                  list_new_labels=nomenclature_new_labels)
 
 if __name__ == '__main__':
     controller_ = {'verbose'               : True,

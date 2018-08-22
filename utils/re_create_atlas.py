@@ -33,7 +33,7 @@ from collections import OrderedDict
 import nibabel as nib
 import numpy as np
 
-from LABelsToolkit.main import LABelsToolkit
+from nilabel.main import Nilabel as NiL
 
 
 if __name__ == '__main__':
@@ -116,7 +116,7 @@ if __name__ == '__main__':
 
         angle = -1 * angle_parameter[1] # + from histo to bicomm, - from bicomm to histo.
 
-        lt = LABelsToolkit()
+        lt = NiL()
         lt.header.apply_small_rotation(pfi_1305_T1_data, pfi_1305_T1_hd_oriented,
                                        angle=angle, principal_axis='pitch')
         lt.header.apply_small_rotation(pfi_1305_T1_data_roi_mask, pfi_1305_T1_roi_mask_hd_oriented,
@@ -207,12 +207,12 @@ if __name__ == '__main__':
         pfi_1305_S0_hd_oriented = jph(pfo_tmp_1305_new_chart, '1305_S0_hd_oriented.nii.gz')
         pfi_1305_S0_reg_mask_hd_oriented = jph(pfo_tmp_1305_new_chart, '1305_S0_reg_mask_hd_oriented.nii.gz')
 
-        lm = LABelsToolkit()
-        lm.header.apply_small_rotation(pfi_1305_S0_data, pfi_1305_S0_hd_oriented,
+        nil = NiL()
+        nil.header.apply_small_rotation(pfi_1305_S0_data, pfi_1305_S0_hd_oriented,
                                        angle=angle, principal_axis='pitch')
-        lm.header.apply_small_rotation(pfi_1305_S0_reg_mask_data, pfi_1305_S0_reg_mask_hd_oriented,
+        nil.header.apply_small_rotation(pfi_1305_S0_reg_mask_data, pfi_1305_S0_reg_mask_hd_oriented,
                                        angle=angle, principal_axis='pitch')
-        del lm
+        del nil
 
         # orient S0 on T1
         pfi_1305_S0_on_T1_oriented_aff  = jph(pfo_tmp_1305_new_chart, '1305_S0_on_oriented_aff.txt')
@@ -232,12 +232,12 @@ if __name__ == '__main__':
             assert os.path.exists(pfi_1305_S0_data)
             pfi_1305_MOD_data_hd_oriented = jph(pfo_tmp_1305_new_chart, '1305_{}_hd_oriented.nii.gz'.format(m))
 
-            lm = LABelsToolkit()
-            lm.header.apply_small_rotation(pfi_1305_MOD_data, pfi_1305_MOD_data_hd_oriented,
+            nil = NiL()
+            nil.header.apply_small_rotation(pfi_1305_MOD_data, pfi_1305_MOD_data_hd_oriented,
                                            angle=angle, principal_axis='pitch')
-            lm.header.apply_small_rotation(pfi_1305_S0_reg_mask_data, pfi_1305_S0_reg_mask_hd_oriented,
+            nil.header.apply_small_rotation(pfi_1305_S0_reg_mask_data, pfi_1305_S0_reg_mask_hd_oriented,
                                            angle=angle, principal_axis='pitch')
-            del lm
+            del nil
 
             print('RESAMPLE chart 1305 mod {}'.format(m))
 
@@ -299,8 +299,8 @@ if __name__ == '__main__':
                 pfi_mod_sj_data = jph(pfo_data, sj_ch, 'mod', '{0}_{1}.nii.gz'.format(sj_ch, mod))
                 assert os.path.exists(pfi_mod_sj_data)
                 pfi_mod_sj_data_hd_oriented = jph(pfo_sj_tmp_new_chart, '{0}_{1}_hd_oriented.nii.gz'.format(sj_ch, mod))
-                lm = LABelsToolkit()
-                lm.header.apply_small_rotation(pfi_mod_sj_data, pfi_mod_sj_data_hd_oriented,
+                nil = NiL()
+                nil.header.apply_small_rotation(pfi_mod_sj_data, pfi_mod_sj_data_hd_oriented,
                                                angle=angle, principal_axis='pitch')
 
             # Orient headers roi mask and registration mask T1 and S0 :
@@ -314,13 +314,13 @@ if __name__ == '__main__':
             pfi_sj_T1_reg_mask_hd_oriented = jph(pfo_sj_tmp_new_chart, '{0}_T1_reg_mask_hd_oriented.nii.gz'.format(sj_ch))
             pfi_sj_S0_reg_mask_hd_oriented = jph(pfo_sj_tmp_new_chart, '{0}_S0_reg_mask_hd_oriented.nii.gz'.format(sj_ch))
 
-            lm = LABelsToolkit()
-            lm.header.apply_small_rotation(pfi_sj_T1_roi_mask_data, pfi_sj_T1_roi_mask_hd_oriented,
-                                           angle=angle, principal_axis='pitch')
-            lm.header.apply_small_rotation(pfi_sj_T1_reg_mask_data, pfi_sj_T1_reg_mask_hd_oriented,
-                                           angle=angle, principal_axis='pitch')
-            lm.header.apply_small_rotation(pfi_sj_S0_reg_mask_data, pfi_sj_S0_reg_mask_hd_oriented,
-                                           angle=angle, principal_axis='pitch')
+            nil = NiL()
+            nil.header.apply_small_rotation(pfi_sj_T1_roi_mask_data, pfi_sj_T1_roi_mask_hd_oriented,
+                                            angle=angle, principal_axis='pitch')
+            nil.header.apply_small_rotation(pfi_sj_T1_reg_mask_data, pfi_sj_T1_reg_mask_hd_oriented,
+                                            angle=angle, principal_axis='pitch')
+            nil.header.apply_small_rotation(pfi_sj_S0_reg_mask_data, pfi_sj_S0_reg_mask_hd_oriented,
+                                            angle=angle, principal_axis='pitch')
 
             print('2 register T1 subject over T1 reference:')
             # register T1 header oriented over T1 1305 in new chart:

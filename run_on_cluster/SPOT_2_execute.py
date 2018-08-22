@@ -5,7 +5,6 @@ import os
 import sys
 from collections import OrderedDict
 
-
 from benchmarking.cross_validation.b_create_flipped_multi_atlas import run_create_flipped_multi_atlas
 from benchmarking.cross_validation.c_generate_automatic_segmentation_leave_one_out import run_generate_automatic_segmentation_leave_one_out
 from benchmarking.cross_validation.d_separate_macro_regions import run_separate_brain_regions

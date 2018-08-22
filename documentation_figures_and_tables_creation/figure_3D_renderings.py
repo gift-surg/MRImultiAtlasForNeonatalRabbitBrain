@@ -8,8 +8,8 @@ from os.path import join as jph
 import numpy as np
 import nibabel as nib
 
-from LABelsToolkit.tools.image_colors_manipulations.relabeller import assign_all_other_labels_the_same_value
-from LABelsToolkit.tools.aux_methods.utils_nib import set_new_data
+from nilabel.tools.image_colors_manipulations.relabeller import assign_all_other_labels_the_same_value
+from nilabel.tools.aux_methods.utils_nib import set_new_data
 
 import path_manager
 

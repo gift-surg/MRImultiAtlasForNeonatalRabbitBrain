@@ -1,7 +1,6 @@
 import os
 from os.path import join as jph
 
-
 import path_manager
 
 

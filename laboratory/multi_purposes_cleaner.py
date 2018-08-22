@@ -3,9 +3,9 @@ import nibabel as nib
 import os
 from os.path import join as jph
 
-from LABelsToolkit.main import LABelsToolkit as LM
-from LABelsToolkit.tools.aux_methods.utils_nib import remove_nan, set_new_header_description, set_new_data
-from LABelsToolkit.tools.image_colors_manipulations.normaliser import intensities_normalisation_linear, \
+from nilabel.main import Nilabel as NiL
+from nilabel.tools.aux_methods.utils_nib import remove_nan_from_im, set_new_data
+from nilabel.tools.image_colors_manipulations.normaliser import intensities_normalisation_linear, \
     normalise_below_labels
 
 
@@ -25,9 +25,9 @@ def custom_clean(pfi_image):
     assert os.path.exists(pfi_image), pfi_image
     im = nib.load(pfi_image)
     # set custom description
-    im = set_new_header_description(im, 'Newborn Brain Rabbit Multi-Atlas Dataset')
+    # im = set_new_header_description(im, 'Newborn Brain Rabbit Multi-Atlas Dataset')
     # remove nan
-    im = remove_nan(im)
+    im = remove_nan_from_im(im)
     nib.save(im, pfi_image)
 
 
@@ -38,16 +38,16 @@ if __name__ == '__main__':
     #     pfi_orignal = jph(pfo_atlas, sj, 'segm', '{}_approved.nii.gz'.format(sj))
     #     pfi_merged = jph(pfo_atlas, sj, 'segm', 'test_PV_{}_approved.nii.gz'.format(sj))
     #
-    #     lm = LM(pfo_atlas)
-    #     lm.manipulate_labels.relabel(pfi_orignal, pfi_merged, list_old_labels=(211, 212), list_new_labels=(201, 201))
+    #     nil = NiL(pfo_atlas)
+    #     nil.manipulate_labels.relabel(pfi_orignal, pfi_merged, list_old_labels=(211, 212), list_new_labels=(201, 201))
     #
     #
     # pfo = '/Users/sebastiano/Dropbox/RabbitEOP-MRI/study/A_atlas/3301/segm/automatic'
     # for fin in os.listdir(pfo):
     #     if fin.endswith('.nii.gz'):
     #         pfi_new = jph(pfo, 'test_PV_' + fin)
-    #         lm = LM()
-    #         lm.manipulate_labels.relabel(jph(pfo, fin), pfi_new, list_old_labels=(211, 212), list_new_labels=(201, 201))
+    #         nil = NiL()
+    #         nil.manipulate_labels.relabel(jph(pfo, fin), pfi_new, list_old_labels=(211, 212), list_new_labels=(201, 201))
 
     ''' Remove nan and set up a message'''
     # for sj in atlas_list_charts_names:

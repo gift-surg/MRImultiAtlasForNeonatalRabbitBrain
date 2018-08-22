@@ -11,8 +11,8 @@ import numpy as np
 import nibabel as nib
 
 from os.path import join as jph
-from LABelsToolkit.tools.image_shape_manipulations.merger import grafting
-from LABelsToolkit.tools.aux_methods.utils_nib import set_new_data
+from nilabel.tools.image_shape_manipulations.merger import grafting
+from nilabel.tools.aux_methods.utils_nib import set_new_data
 
 import path_manager
 

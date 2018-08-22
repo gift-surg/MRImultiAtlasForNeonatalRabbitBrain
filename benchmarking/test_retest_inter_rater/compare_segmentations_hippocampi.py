@@ -11,9 +11,9 @@ import nibabel as nib
 
 import pandas as pa
 
-from LABelsToolkit.main import LABelsToolkit as LabT
-from LABelsToolkit.tools.caliber.distances import dice_score_l, hausdorff_distance_l, symmetric_contour_distance_l, \
-    covariance_distance
+from nilabel.main import Nilabel as NiL
+from nilabel.tools.caliber.distances import dice_score_one_label, hausdorff_distance_one_label, \
+    symmetric_contour_distance_one_label, covariance_distance
 
 import path_manager
 
@@ -48,30 +48,30 @@ def run_comparison_inter_rater():
 
         im_raterH = nib.load(pfi_segm_raterH)
         im_raterL = nib.load(pfi_segm_raterL)
-        im_auto = nib.load(pfi_segm_auto)
+        im_auto   = nib.load(pfi_segm_auto)
 
         # dice score:
-        raterH_vs_raterL[0] = dice_score_l(im_raterH, im_raterL, label_hippocampus)
-        raterH_vs_auto[0] = dice_score_l(im_raterH, im_auto, label_hippocampus)
-        raterL_vs_auto[0] = dice_score_l(im_raterL, im_auto, label_hippocampus)
+        raterH_vs_raterL[0] = dice_score_one_label(im_raterH, im_raterL, label_hippocampus)
+        raterH_vs_auto[0]   = dice_score_one_label(im_raterH, im_auto, label_hippocampus)
+        raterL_vs_auto[0]   = dice_score_one_label(im_raterL, im_auto, label_hippocampus)
 
         # Covariance distance:
         raterH_vs_raterL[1] = covariance_distance(im_raterH, im_raterL, [label_hippocampus, ], [label_hippocampus, ],
                                                   factor=10)[label_hippocampus]
-        raterH_vs_auto[1] = covariance_distance(im_raterH, im_auto, [label_hippocampus, ], [label_hippocampus, ],
-                                                factor=10)[label_hippocampus]
-        raterL_vs_auto[1] = covariance_distance(im_raterL, im_auto, [label_hippocampus, ], [label_hippocampus, ],
-                                                factor=10)[label_hippocampus]
+        raterH_vs_auto[1]   = covariance_distance(im_raterH, im_auto, [label_hippocampus, ], [label_hippocampus, ],
+                                                  factor=10)[label_hippocampus]
+        raterL_vs_auto[1]   = covariance_distance(im_raterL, im_auto, [label_hippocampus, ], [label_hippocampus, ],
+                                                  factor=10)[label_hippocampus]
 
         # Hausdorff distance:
-        raterH_vs_raterL[2] = hausdorff_distance_l(im_raterH, im_raterL, label_hippocampus, return_mm3=True)
-        raterH_vs_auto[2] = hausdorff_distance_l(im_raterH, im_auto, label_hippocampus, return_mm3=True)
-        raterL_vs_auto[2] = hausdorff_distance_l(im_raterL, im_auto, label_hippocampus, return_mm3=True)
+        raterH_vs_raterL[2] = hausdorff_distance_one_label(im_raterH, im_raterL, label_hippocampus, return_mm3=True)
+        raterH_vs_auto[2]   = hausdorff_distance_one_label(im_raterH, im_auto, label_hippocampus, return_mm3=True)
+        raterL_vs_auto[2]   = hausdorff_distance_one_label(im_raterL, im_auto, label_hippocampus, return_mm3=True)
 
         # NSCD:
-        raterH_vs_raterL[3] = symmetric_contour_distance_l(im_raterH, im_raterL, label_hippocampus, return_mm3=True)
-        raterH_vs_auto[3] = symmetric_contour_distance_l(im_raterH, im_auto, label_hippocampus, return_mm3=True)
-        raterL_vs_auto[3] = symmetric_contour_distance_l(im_raterL, im_auto, label_hippocampus, return_mm3=True)
+        raterH_vs_raterL[3] = symmetric_contour_distance_one_label(im_raterH, im_raterL, label_hippocampus, return_mm3=True)
+        raterH_vs_auto[3]   = symmetric_contour_distance_one_label(im_raterH, im_auto, label_hippocampus, return_mm3=True)
+        raterL_vs_auto[3]   = symmetric_contour_distance_one_label(im_raterL, im_auto, label_hippocampus, return_mm3=True)
 
         print raterH_vs_raterL
         print raterH_vs_auto
@@ -110,8 +110,8 @@ def run_comparison_inter_rater():
             assert os.path.exists(pfi_segm)
             pfi_contour = jph(pfo_root_experiments_output, '{}_contour.nii.gz'.format(f))
 
-            lt = LabT()
-            lt.manipulate_intensities.get_contour_from_segmentation(pfi_segm, pfi_contour, omit_axis='y', verbose=1)
+            nil = NiL()
+            nil.manipulate_intensities.get_contour_from_segmentation(pfi_segm, pfi_contour, omit_axis='y', verbose=1)
             # change labels values:
             os.system('seg_maths {0} -bin {0}'.format(pfi_contour))
             os.system('seg_maths {0} -mul {1} {0}'.format(pfi_contour, f_label))

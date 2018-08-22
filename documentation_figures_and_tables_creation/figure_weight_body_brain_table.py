@@ -1,10 +1,8 @@
 import os
 import numpy as np
+from collections import OrderedDict
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Ellipse
-
-
-from collections import OrderedDict
 
 import path_manager
 
