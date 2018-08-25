@@ -9,8 +9,8 @@ from os.path import join as jph
 import nibabel as nib
 import numpy as np
 
-from nilabel.tools.aux_methods.utils_nib import set_new_data
-from nilabel.main import Nilabel as NiL
+import nilabels as nis
+from nilabels.tools.aux_methods.utils_nib import set_new_data
 
 import path_manager
 
@@ -60,8 +60,8 @@ if __name__ == '__main__':
 
         # --- Isolate the single region r in segm_r_over_sj, call segm_r_over_sj_only_r
         pfi_segm_r_over_sj_only_r = jph(pfo_tmp, 'segm_{}_over_{}_only_r.nii.gz'.format(subject_r, sj))
-        nil = NiL()
-        # nil.manipulate_labels.keep_one_label(segm_r_over_sj, pfi_segm_r_over_sj_only_r, label_to_keep=region_r)
+        nis_app = nis.App()
+        # nis_app.manipulate_labels.keep_one_label(segm_r_over_sj, pfi_segm_r_over_sj_only_r, label_to_keep=region_r)
 
         # --- subtract segm_r_over_sj_only_r to all the existing regions in segm_sj
         # call label_r_over_sj_no_overlap

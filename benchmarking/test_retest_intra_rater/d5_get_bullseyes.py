@@ -2,7 +2,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pa
-from nilabel.tools.visualiser.graphs_and_stats import multi_bull_eyes
+from nilabels.tools.visualiser.graphs_and_stats import multi_bull_eyes
 
 import benchmarking.test_retest_intra_rater.a_paths_intra_rater as ph
 

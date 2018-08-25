@@ -33,7 +33,7 @@ from collections import OrderedDict
 import nibabel as nib
 import numpy as np
 
-from nilabel.main import Nilabel as NiL
+import nilabels as nis
 
 
 if __name__ == '__main__':
@@ -116,14 +116,14 @@ if __name__ == '__main__':
 
         angle = -1 * angle_parameter[1] # + from histo to bicomm, - from bicomm to histo.
 
-        lt = NiL()
-        lt.header.apply_small_rotation(pfi_1305_T1_data, pfi_1305_T1_hd_oriented,
-                                       angle=angle, principal_axis='pitch')
-        lt.header.apply_small_rotation(pfi_1305_T1_data_roi_mask, pfi_1305_T1_roi_mask_hd_oriented,
-                                       angle=angle, principal_axis='pitch')
-        lt.header.apply_small_rotation(pfi_1305_T1_data_reg_mask, pfi_1305_T1_reg_mask_hd_oriented,
-                                       angle=angle, principal_axis='pitch')
-        del lt, angle_parameter, sj_parameters
+        nis_app = nis.App()
+        nis_app.header.apply_small_rotation(pfi_1305_T1_data, pfi_1305_T1_hd_oriented,
+                                            angle=angle, principal_axis='pitch')
+        nis_app.header.apply_small_rotation(pfi_1305_T1_data_roi_mask, pfi_1305_T1_roi_mask_hd_oriented,
+                                            angle=angle, principal_axis='pitch')
+        nis_app.header.apply_small_rotation(pfi_1305_T1_data_reg_mask, pfi_1305_T1_reg_mask_hd_oriented,
+                                            angle=angle, principal_axis='pitch')
+        del nis_app, angle_parameter, sj_parameters
 
         assert os.path.exists(pfi_1305_T1_hd_oriented)
         assert os.path.exists(pfi_1305_T1_roi_mask_hd_oriented)
@@ -207,12 +207,12 @@ if __name__ == '__main__':
         pfi_1305_S0_hd_oriented = jph(pfo_tmp_1305_new_chart, '1305_S0_hd_oriented.nii.gz')
         pfi_1305_S0_reg_mask_hd_oriented = jph(pfo_tmp_1305_new_chart, '1305_S0_reg_mask_hd_oriented.nii.gz')
 
-        nil = NiL()
-        nil.header.apply_small_rotation(pfi_1305_S0_data, pfi_1305_S0_hd_oriented,
-                                       angle=angle, principal_axis='pitch')
-        nil.header.apply_small_rotation(pfi_1305_S0_reg_mask_data, pfi_1305_S0_reg_mask_hd_oriented,
-                                       angle=angle, principal_axis='pitch')
-        del nil
+        nis_app = nis.App()
+        nis_app.header.apply_small_rotation(pfi_1305_S0_data, pfi_1305_S0_hd_oriented,
+                                            angle=angle, principal_axis='pitch')
+        nis_app.header.apply_small_rotation(pfi_1305_S0_reg_mask_data, pfi_1305_S0_reg_mask_hd_oriented,
+                                            angle=angle, principal_axis='pitch')
+        del nis_app
 
         # orient S0 on T1
         pfi_1305_S0_on_T1_oriented_aff  = jph(pfo_tmp_1305_new_chart, '1305_S0_on_oriented_aff.txt')
@@ -232,12 +232,12 @@ if __name__ == '__main__':
             assert os.path.exists(pfi_1305_S0_data)
             pfi_1305_MOD_data_hd_oriented = jph(pfo_tmp_1305_new_chart, '1305_{}_hd_oriented.nii.gz'.format(m))
 
-            nil = NiL()
-            nil.header.apply_small_rotation(pfi_1305_MOD_data, pfi_1305_MOD_data_hd_oriented,
-                                           angle=angle, principal_axis='pitch')
-            nil.header.apply_small_rotation(pfi_1305_S0_reg_mask_data, pfi_1305_S0_reg_mask_hd_oriented,
-                                           angle=angle, principal_axis='pitch')
-            del nil
+            nis_app = nis.App()
+            nis_app.header.apply_small_rotation(pfi_1305_MOD_data, pfi_1305_MOD_data_hd_oriented,
+                                                angle=angle, principal_axis='pitch')
+            nis_app.header.apply_small_rotation(pfi_1305_S0_reg_mask_data, pfi_1305_S0_reg_mask_hd_oriented,
+                                                angle=angle, principal_axis='pitch')
+            del nis_app
 
             print('RESAMPLE chart 1305 mod {}'.format(m))
 
@@ -299,9 +299,9 @@ if __name__ == '__main__':
                 pfi_mod_sj_data = jph(pfo_data, sj_ch, 'mod', '{0}_{1}.nii.gz'.format(sj_ch, mod))
                 assert os.path.exists(pfi_mod_sj_data)
                 pfi_mod_sj_data_hd_oriented = jph(pfo_sj_tmp_new_chart, '{0}_{1}_hd_oriented.nii.gz'.format(sj_ch, mod))
-                nil = NiL()
-                nil.header.apply_small_rotation(pfi_mod_sj_data, pfi_mod_sj_data_hd_oriented,
-                                               angle=angle, principal_axis='pitch')
+                nis_app = nis.App()
+                nis_app.header.apply_small_rotation(pfi_mod_sj_data, pfi_mod_sj_data_hd_oriented,
+                                                    angle=angle, principal_axis='pitch')
 
             # Orient headers roi mask and registration mask T1 and S0 :
             pfi_sj_T1_roi_mask_data = jph(pfo_data, sj_ch, 'masks', '{0}_T1_roi_mask.nii.gz'.format(sj_ch))
@@ -314,13 +314,13 @@ if __name__ == '__main__':
             pfi_sj_T1_reg_mask_hd_oriented = jph(pfo_sj_tmp_new_chart, '{0}_T1_reg_mask_hd_oriented.nii.gz'.format(sj_ch))
             pfi_sj_S0_reg_mask_hd_oriented = jph(pfo_sj_tmp_new_chart, '{0}_S0_reg_mask_hd_oriented.nii.gz'.format(sj_ch))
 
-            nil = NiL()
-            nil.header.apply_small_rotation(pfi_sj_T1_roi_mask_data, pfi_sj_T1_roi_mask_hd_oriented,
-                                            angle=angle, principal_axis='pitch')
-            nil.header.apply_small_rotation(pfi_sj_T1_reg_mask_data, pfi_sj_T1_reg_mask_hd_oriented,
-                                            angle=angle, principal_axis='pitch')
-            nil.header.apply_small_rotation(pfi_sj_S0_reg_mask_data, pfi_sj_S0_reg_mask_hd_oriented,
-                                            angle=angle, principal_axis='pitch')
+            nis_app = nis.App()
+            nis_app.header.apply_small_rotation(pfi_sj_T1_roi_mask_data, pfi_sj_T1_roi_mask_hd_oriented,
+                                                angle=angle, principal_axis='pitch')
+            nis_app.header.apply_small_rotation(pfi_sj_T1_reg_mask_data, pfi_sj_T1_reg_mask_hd_oriented,
+                                                angle=angle, principal_axis='pitch')
+            nis_app.header.apply_small_rotation(pfi_sj_S0_reg_mask_data, pfi_sj_S0_reg_mask_hd_oriented,
+                                                angle=angle, principal_axis='pitch')
 
             print('2 register T1 subject over T1 reference:')
             # register T1 header oriented over T1 1305 in new chart:

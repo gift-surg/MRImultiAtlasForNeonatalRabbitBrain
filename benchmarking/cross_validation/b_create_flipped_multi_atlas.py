@@ -6,13 +6,12 @@ import os
 import nibabel as nib
 from os.path import join as jph
 
+import nilabels as nis
+from nilabels.tools.aux_methods.utils_nib import set_new_data
+from nilabels.tools.aux_methods.utils import print_and_run
+from nilabels.tools.aux_methods.label_descriptor_manager import LabelsDescriptorManager as LdM
+
 import path_manager
-
-from nilabel.tools.aux_methods.utils_nib import set_new_data
-from nilabel.tools.aux_methods.utils import print_and_run
-from nilabel.tools.aux_methods.label_descriptor_manager import LabelsDescriptorManager as LdM
-
-from nilabel.main import Nilabel as NiL
 
 
 def flip_data(in_data, axis='x'):
@@ -82,10 +81,10 @@ def flipper(pfo_atlas, atlas_charts_names, sufix_atlas, labels_descriptor):
                         left_labels = [l for l in ld_dict.keys() if 'left' in ld_dict[l][2].lower()]
                         right_labels = [l + 1 for l in left_labels]
 
-                        lt = NiL()
-                        lt.manipulate_labels.relabel(pfi_nii_flipped, pfi_nii_flipped,
-                                                     list_old_labels=left_labels + right_labels,
-                                                     list_new_labels=right_labels + left_labels)
+                        nis_app = nis.App()
+                        nis_app.manipulate_labels.relabel(pfi_nii_flipped, pfi_nii_flipped,
+                                                          list_old_labels=left_labels + right_labels,
+                                                          list_new_labels=right_labels + left_labels)
 
 
 def run_create_flipped_multi_atlas(phases):

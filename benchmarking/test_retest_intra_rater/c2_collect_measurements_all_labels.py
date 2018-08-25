@@ -1,6 +1,6 @@
 import benchmarking.test_retest_intra_rater.a_paths_intra_rater as ph
-from nilabel.main import Nilabel as NiL
-from nilabel.tools.caliber import distances as dist
+import nilabels as nis
+from nilabels.tools.caliber import distances as dist
 
 from benchmarking.a_nomenclatures import taxonomy_abbreviations
 
@@ -16,65 +16,65 @@ def collect_measurements_tst_retest():
         print '\n\nTaxonomical division inter-rater test-re-test'
         print '==================='
         print 'Compare man1 with man2 all labels'
-        nil = NiL()
-        nil.measure.verbose = True
-        man1_man2_measures_divide_taxonomical = nil.measure.dist(ph.pfi_segm_man1,
-                                                                 ph.pfi_segm_man2,
-                                                                 labels_list=taxonomy_abbreviations.keys(),
-                                                                 labels_names=taxonomy_abbreviations.keys(),
-                                                                 metrics=(dist.dice_score,
-                                                                           dist.covariance_distance,
-                                                                           dist.hausdorff_distance,
-                                                                           dist.normalised_symmetric_contour_distance),
-                                                                 where_to_save=ph.pfi_pickled_scoring_man1_man2_all)
+        nis_app = nis.App()
+        nis_app.measure.verbose = True
+        man1_man2_measures_divide_taxonomical = nis_app.measure.dist(ph.pfi_segm_man1,
+                                                                     ph.pfi_segm_man2,
+                                                                     labels_list=taxonomy_abbreviations.keys(),
+                                                                     labels_names=taxonomy_abbreviations.keys(),
+                                                                     metrics=(dist.dice_score,
+                                                                              dist.covariance_distance,
+                                                                              dist.hausdorff_distance,
+                                                                              dist.normalised_symmetric_contour_distance),
+                                                                     where_to_save=ph.pfi_pickled_scoring_man1_man2_all)
 
         print '---------------'
         print 'Compare man1 with man2 all labels'
         print man1_man2_measures_divide_taxonomical
 
-        del nil
+        del nis_app
 
     if auto_man1:
         print '\n\n==================='
         print 'Compare auto with man1 all labels'
-        nil = NiL()
-        nil.measure.verbose = True
-        auto_man1_measures_divide_taxonomical = nil.measure.dist(ph.pfi_segm_auto,
-                                                                 ph.pfi_segm_man1,
-                                                                 labels_list=taxonomy_abbreviations.keys(),
-                                                                 labels_names=taxonomy_abbreviations.keys(),
-                                                                 metrics=(dist.dice_score,
-                                                                          dist.covariance_distance,
-                                                                          dist.hausdorff_distance,
-                                                                          dist.normalised_symmetric_contour_distance),
-                                                                 where_to_save=ph.pfi_pickled_scoring_auto_man1_all)
+        nis_app = nis.App()
+        nis_app.measure.verbose = True
+        auto_man1_measures_divide_taxonomical = nis_app.measure.dist(ph.pfi_segm_auto,
+                                                                     ph.pfi_segm_man1,
+                                                                     labels_list=taxonomy_abbreviations.keys(),
+                                                                     labels_names=taxonomy_abbreviations.keys(),
+                                                                     metrics=(dist.dice_score,
+                                                                              dist.covariance_distance,
+                                                                              dist.hausdorff_distance,
+                                                                              dist.normalised_symmetric_contour_distance),
+                                                                     where_to_save=ph.pfi_pickled_scoring_auto_man1_all)
 
         print '---------------'
         print 'Compare auto with man1 all labels'
         print auto_man1_measures_divide_taxonomical
 
-        del nil
+        del nis_app
 
     if auto_man2:
         print '\n\n==================='
         print 'Compare auto with man2  all labels'
-        nil = NiL()
-        nil.measure.verbose = True
-        auto_man2_measures_divide_taxonomical = nil.measure.dist(ph.pfi_segm_auto,
-                                                                 ph.pfi_segm_man2,
-                                                                 labels_list=taxonomy_abbreviations.keys(),
-                                                                 labels_names=taxonomy_abbreviations.keys(),
-                                                                 metrics=(dist.dice_score,
-                                                                          dist.covariance_distance,
-                                                                          dist.hausdorff_distance,
-                                                                          dist.normalised_symmetric_contour_distance),
-                                                                 where_to_save=ph.pfi_pickled_scoring_auto_man2_all)
+        nis_app = nis.App()
+        nis_app.measure.verbose = True
+        auto_man2_measures_divide_taxonomical = nis_app.measure.dist(ph.pfi_segm_auto,
+                                                                     ph.pfi_segm_man2,
+                                                                     labels_list=taxonomy_abbreviations.keys(),
+                                                                     labels_names=taxonomy_abbreviations.keys(),
+                                                                     metrics=(dist.dice_score,
+                                                                              dist.covariance_distance,
+                                                                              dist.hausdorff_distance,
+                                                                              dist.normalised_symmetric_contour_distance),
+                                                                     where_to_save=ph.pfi_pickled_scoring_auto_man2_all)
 
         print '---------------'
         print 'Compare auto with man2 all labels'
         print auto_man2_measures_divide_taxonomical
 
-        del nil
+        del nis_app
 
 
 if __name__ == '__main__':

@@ -3,11 +3,11 @@ from os.path import join as jph
 import nibabel as nib
 import numpy as np
 
-from nilabel.tools.aux_methods.utils import print_and_run
-from nilabel.tools.aux_methods.utils_nib import set_new_data
-from nilabel.tools.detections.contours import contour_from_segmentation
-from nilabel.tools.aux_methods.label_descriptor_manager import LabelsDescriptorManager as LdM
-from nilabel.tools.image_colors_manipulations.relabeller import relabeller
+from nilabels.tools.aux_methods.utils import print_and_run
+from nilabels.tools.aux_methods.utils_nib import set_new_data
+from nilabels.tools.detections.contours import contour_from_segmentation
+from nilabels.tools.aux_methods.label_descriptor_manager import LabelsDescriptorManager as LdM
+from nilabels.tools.image_colors_manipulations.relabeller import relabeller
 
 import path_manager
 

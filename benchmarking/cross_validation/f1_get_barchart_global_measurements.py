@@ -3,9 +3,10 @@ Global measurements confusion matrix.
 """
 import matplotlib.pyplot as plt
 import pandas as pa
-from nilabel.tools.visualiser.graphs_and_stats import confusion_matrix
+from nilabels.tools.visualiser.graphs_and_stats import confusion_matrix
 import benchmarking.cross_validation.a_paths_and_parameters_cross_validation as ph
 import seaborn as sns
+
 import path_manager
 
 

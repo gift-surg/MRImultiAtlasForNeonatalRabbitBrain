@@ -3,7 +3,7 @@ from os.path import join as jph
 import nibabel as nib
 import numpy as np
 
-from nilabel.tools.aux_methods.utils_nib import set_new_data
+from nilabels.tools.aux_methods.utils_nib import set_new_data
 
 import path_manager
 

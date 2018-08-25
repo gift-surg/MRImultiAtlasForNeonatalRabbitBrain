@@ -12,9 +12,9 @@ import numpy as np
 import nibabel as nib
 import copy
 
-from nilabel.tools.aux_methods.utils_nib import set_new_data
-from nilabel.tools.aux_methods.utils import print_and_run
-from nilabel.main import Nilabel as NiL
+import nilabels as nis
+from nilabels.tools.aux_methods.utils_nib import set_new_data
+from nilabels.tools.aux_methods.utils import print_and_run
 
 import path_manager
 
@@ -183,9 +183,9 @@ if __name__ == '__main__':
 
     print('Get the contour of the segmentation')
     if create:
-        nil = NiL()
-        nil.manipulate_intensities.get_contour_from_segmentation(pfi_model_segm, pfi_output_contour_coronal,
-                                                                 omit_axis='y', verbose=1)
+        nis_app = nis.App()
+        nis_app.manipulate_intensities.get_contour_from_segmentation(pfi_model_segm, pfi_output_contour_coronal,
+                                                                     omit_axis='y', verbose=1)
 
     print('Get half_intersections = get the planes halfed intersection with binarised parcellation')
     pfi_binarised_parcellation = jph(path_manager.pfo_root_for_images, 'binarised_parcellation.nii.gz')

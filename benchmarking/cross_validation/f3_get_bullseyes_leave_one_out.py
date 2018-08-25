@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pa
 
-from nilabel.tools.visualiser.graphs_and_stats import multi_bull_eyes
+from nilabels.tools.visualiser.graphs_and_stats import multi_bull_eyes
 
 import benchmarking.cross_validation.a_paths_and_parameters_cross_validation as param
 import path_manager

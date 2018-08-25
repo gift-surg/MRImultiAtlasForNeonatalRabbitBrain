@@ -3,9 +3,9 @@ import nibabel as nib
 import os
 from os.path import join as jph
 
-from nilabel.main import Nilabel as NiL
-from nilabel.tools.aux_methods.utils_nib import remove_nan_from_im, set_new_data
-from nilabel.tools.image_colors_manipulations.normaliser import intensities_normalisation_linear, \
+import nilabels as nis
+from nilabels.tools.aux_methods.utils_nib import remove_nan_from_im, set_new_data
+from nilabels.tools.image_colors_manipulations.normaliser import intensities_normalisation_linear, \
     normalise_below_labels
 
 
@@ -38,8 +38,8 @@ if __name__ == '__main__':
     #     pfi_orignal = jph(pfo_atlas, sj, 'segm', '{}_approved.nii.gz'.format(sj))
     #     pfi_merged = jph(pfo_atlas, sj, 'segm', 'test_PV_{}_approved.nii.gz'.format(sj))
     #
-    #     nil = NiL(pfo_atlas)
-    #     nil.manipulate_labels.relabel(pfi_orignal, pfi_merged, list_old_labels=(211, 212), list_new_labels=(201, 201))
+    #     nis_app = nis.App(pfo_atlas)
+    #     nis_app.manipulate_labels.relabel(pfi_orignal, pfi_merged, list_old_labels=(211, 212), list_new_labels=(201, 201))
     #
     #
     # pfo = '/Users/sebastiano/Dropbox/RabbitEOP-MRI/study/A_atlas/3301/segm/automatic'

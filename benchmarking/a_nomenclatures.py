@@ -1,7 +1,7 @@
 import os
 from collections import OrderedDict
 
-from nilabel.tools.aux_methods.label_descriptor_manager import LabelsDescriptorManager
+from nilabels.tools.aux_methods.label_descriptor_manager import LabelsDescriptorManager
 
 
 nomenclature_anatomical = OrderedDict(
@@ -165,7 +165,7 @@ if __name__ == '__main__':
     pfi_current_descriptor = '/Users/sebastiano/Dropbox/RabbitEOP-MRI/study/A_atlas/labels_descriptor.txt'
 
     ldm = LabelsDescriptorManager(pfi_current_descriptor)
-    dict = ldm.get_dict()
+    dict = ldm.dict_label_descriptor()
 
     labels_current_descriptor = dict.keys()
 

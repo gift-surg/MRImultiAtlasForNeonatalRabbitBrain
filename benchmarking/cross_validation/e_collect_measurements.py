@@ -42,7 +42,7 @@ import nibabel as nib
 import numpy as np
 import pandas as pa
 
-from nilabel.tools.caliber import distances as dist
+from nilabels.tools.caliber import distances as dist
 
 from benchmarking.a_nomenclatures import nomenclature_taxonomical, nomenclature_anatomical
 import benchmarking.cross_validation.a_paths_and_parameters_cross_validation as ph
@@ -88,7 +88,8 @@ def get_measurements_by_metric_method_and_nomenclature(metric, method, nomenclat
 
         im_manual = nib.load(pfi_manual_segm)
         im_automatic = nib.load(pfi_automatic_segm)
-        df_metric_method_nomenclature[sj] = metric(im_manual, im_automatic, labels_list_names[0], labels_list_names[1], verbose=1)
+        df_metric_method_nomenclature[sj] = metric(im_manual, im_automatic, labels_list_names[0], labels_list_names[1],
+                                                   verbose=1)
 
     return df_metric_method_nomenclature
 
@@ -100,8 +101,10 @@ def compute_all_metric_all_methods_given_nomenclature(nomenclature):
         print '\n\nMetric {}'.format(me.__name__)
         for mn in param.methods_names:
             print 'method name {}'.format(mn)
-            df_metric_method_nomenclature = get_measurements_by_metric_method_and_nomenclature(me, mn, nomenclature=nomenclature)
-            pfi_df_metric_method_nomenclature = jph(path_manager.pfo_data_elaborations_leave_one_out, '{0}_{1}_{2}.pickle'.format(me.__name__, mn, nomenclature))
+            df_metric_method_nomenclature = get_measurements_by_metric_method_and_nomenclature(me, mn,
+                                                                                            nomenclature=nomenclature)
+            pfi_df_metric_method_nomenclature = jph(path_manager.pfo_data_elaborations_leave_one_out,
+                                                    '{0}_{1}_{2}.pickle'.format(me.__name__, mn, nomenclature))
             df_metric_method_nomenclature.to_pickle(pfi_df_metric_method_nomenclature)
 
 

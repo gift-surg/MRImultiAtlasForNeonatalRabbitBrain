@@ -1,9 +1,7 @@
 import os
 from os.path import join as jph
-
 import matplotlib.pyplot as plt
 import pandas as pa
-
 import seaborn as sns
 
 from benchmarking.a_nomenclatures import taxonomy_abbreviations, nomenclature_taxonomical, nomenclature_anatomical

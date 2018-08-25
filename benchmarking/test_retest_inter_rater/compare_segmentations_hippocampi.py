@@ -11,8 +11,8 @@ import nibabel as nib
 
 import pandas as pa
 
-from nilabel.main import Nilabel as NiL
-from nilabel.tools.caliber.distances import dice_score_one_label, hausdorff_distance_one_label, \
+import nilabels as nis
+from nilabels.tools.caliber.distances import dice_score_one_label, hausdorff_distance_one_label, \
     symmetric_contour_distance_one_label, covariance_distance
 
 import path_manager
@@ -110,8 +110,8 @@ def run_comparison_inter_rater():
             assert os.path.exists(pfi_segm)
             pfi_contour = jph(pfo_root_experiments_output, '{}_contour.nii.gz'.format(f))
 
-            nil = NiL()
-            nil.manipulate_intensities.get_contour_from_segmentation(pfi_segm, pfi_contour, omit_axis='y', verbose=1)
+            nis_app = nis.App()
+            nis_app.manipulate_intensities.get_contour_from_segmentation(pfi_segm, pfi_contour, omit_axis='y', verbose=1)
             # change labels values:
             os.system('seg_maths {0} -bin {0}'.format(pfi_contour))
             os.system('seg_maths {0} -mul {1} {0}'.format(pfi_contour, f_label))

@@ -4,8 +4,8 @@ Common parameters used by other modules in this python package.
 
 from os.path import join as jph
 
-from nilabel.tools.aux_methods.label_descriptor_manager import LabelsDescriptorManager
-from nilabel.tools.caliber.distances import dice_score, covariance_distance, hausdorff_distance, \
+from nilabels.tools.aux_methods.label_descriptor_manager import LabelsDescriptorManager
+from nilabels.tools.caliber.distances import dice_score, covariance_distance, hausdorff_distance, \
     normalised_symmetric_contour_distance
 
 import path_manager
@@ -34,7 +34,7 @@ for cat in segm_tags:
             methods_names += ['{0}_{1}_{2}'.format(mod, segm, cat)]
 
 ldm = LabelsDescriptorManager(path_manager.pfi_labels_descriptor)
-label_descriptor_dict = ldm.get_dict(as_string=False)
+label_descriptor_dict = ldm.dict_label_descriptor(as_string=False)
 all_labels_list = list(label_descriptor_dict.keys())
 all_labels_list.remove(0)
 all_labels_list.remove(255)
