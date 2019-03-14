@@ -13,9 +13,10 @@ from benchmarking.parameters_selection import a_paths as ph
 from spot.spotter import SpotDS
 
 
-def run_generate_automatic_segmentation_leave_one_out(modalities=('T1', 'FA'), target_pfo=''):
+def run_generate_automatic_segmentation_leave_one_out(modalities=('T1', 'FA'), suffix_result='automaticMulti',
+                                                      tag_suffix='Multi'):
 
-    assert os.path.exists(ph.pfo_benchmarking_parameters_leave_one_out)
+    assert os.path.exists(ph.pfo_mutli_atlas_leave_one_out)
 
     atlas_subjects = ph.atlas_subjects
 
@@ -28,10 +29,10 @@ def run_generate_automatic_segmentation_leave_one_out(modalities=('T1', 'FA'), t
 
         assert target_chart_name not in atlas_without_one
 
-        spot_sj = SpotDS(atlas_pfo=ph.pfo_benchmarking_parameters_leave_one_out,
-                         target_pfo=target_pfo,
+        spot_sj = SpotDS(atlas_pfo=ph.pfo_mutli_atlas_leave_one_out,
+                         target_pfo=ph.pfo_target,
                          target_name=target_chart_name,
-                         parameters_tag='CrossValidation')
+                         parameters_tag='CrossValidation' + tag_suffix)
 
         # Template parameters:
         spot_sj.atlas_name = 'Multi Atlas Newborn Rabbit'  # Multi Atlas Newborn Rabbit
@@ -40,6 +41,9 @@ def run_generate_automatic_segmentation_leave_one_out(modalities=('T1', 'FA'), t
         spot_sj.atlas_list_suffix_masks = ['roi_mask', 'roi_reg_mask']
         spot_sj.atlas_reference_chart_name = '1305'
         spot_sj.atlas_segmentation_suffix = 'segm'
+
+        spot_sj.arch_suffix_masks                        = ['roi_mask', 'reg_mask', 'reg_mask']
+        spot_sj.arch_automatic_segmentations_name_folder = suffix_result
 
         # --- target parameters
         spot_sj.target_list_suffix_modalities = ['T1', 'S0', 'V1', 'MD', 'FA']
@@ -94,5 +98,7 @@ def run_generate_automatic_segmentation_leave_one_out(modalities=('T1', 'FA'), t
 
 if __name__ == '__main__':
 
-    run_generate_automatic_segmentation_leave_one_out(modalities=('T1'), target_pfo=ph.pfo_target_for_mono)
-    run_generate_automatic_segmentation_leave_one_out(modalities=('T1', 'FA'), target_pfo=ph.pfo_target_for_multi)
+    run_generate_automatic_segmentation_leave_one_out(modalities=('T1', ), suffix_result='automaticMono',
+                                                      tag_suffix='Mono')
+    run_generate_automatic_segmentation_leave_one_out(modalities=('T1', 'FA'), suffix_result='automaticMulti',
+                                                      tag_suffix='Multi')
