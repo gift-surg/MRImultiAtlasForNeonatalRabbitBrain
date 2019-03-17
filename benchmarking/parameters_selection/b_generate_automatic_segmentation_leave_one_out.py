@@ -6,7 +6,6 @@ with the leave one out cross validation strategy.
 
 import os
 from collections import OrderedDict
-from os.path import join as jph
 import numpy as np
 
 from benchmarking.parameters_selection import a_paths as ph
