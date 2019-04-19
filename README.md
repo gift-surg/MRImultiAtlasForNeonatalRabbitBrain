@@ -40,7 +40,7 @@ feature requests, code re-factoring and re-styling.
 ## Authors and Acknowledgments
 
 + The MRI Neonatal Rabbit Multi-Atlas and related code is developed within the [GIFT-surg research project][giftsurg], a 
- collaborative project between the Univeristy College London (UK) and Katholieke Universiteit Leuven Leuven (Belgium).
+ collaborative project between the University College London (UK) and Katholieke Universiteit Leuven Leuven (Belgium).
 + This work was supported by Wellcome / Engineering and Physical Sciences Research Council (EPSRC) [WT101957; NS/A000027/1; 203145Z/16/Z]. 
 + The full list of authors and acknowledgments can be found in the [Neuroimage paper][paperlink], please use the same reference
 to cite the dataset and the code if you find it useful for your research.
